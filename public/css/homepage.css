@@ -33,7 +33,9 @@ body{
 
 #Logo {
     height: 45px;
-    background: url(media/auto.png);
+    width: 128px;
+    float: left;
+    background: url(media/auto.png) no-repeat left top;
 }
 
 #ancoraLogin {
