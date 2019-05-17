@@ -32,7 +32,8 @@ body{
 }
 
 #Logo {
-    height: 45px; 
+    height: 45px;
+    background: url(media/auto.png);
 }
 
 #ancoraLogin {
@@ -54,7 +55,7 @@ body{
 }
 
 .main {
-    clear: left;
+clear:left; 
 }
 
 #immagineHome {
