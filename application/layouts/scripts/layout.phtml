@@ -6,8 +6,10 @@
         <?= $this->headLink(); ?>
         <?= $this->headTitle(); ?>
     </head>
-<body>
-    <nav class="barraNavigazione">
+    
+    <body>
+   
+            <nav class="barraNavigazione">
         
             <a href="">
                 <div id="Logo" alt="Logo"> 
@@ -18,10 +20,17 @@
             </div>
             </a>
         
-        <?= $this->render('_topnavmain0.phtml') ?>           
-    </nav>
+         <?= $this->render('_topnavmain0.phtml') ?>           
+            </nav>
             
-        
+        <div id="page">
+  	  <div id="page-bgtop">
+    	<div id="page-bgbtm">
+	  	  <?php echo $this->layout()->content; ?>
+      	<div style="clear: both;">&nbsp;</div>
+	    </div>
+  	  </div>
+	</div>
 
     <footer class="footer">
         <p style="text-align: center; color: white; font-size: 12px">
@@ -29,6 +38,8 @@
         Web site powered by Gruppo 8
         </p>
     </footer>
-
+            
+       
 </body>
+
 </html>

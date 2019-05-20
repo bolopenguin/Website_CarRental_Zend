@@ -1,8 +1,52 @@
-body{
-    width: 1100px;
-    height: 1100px;
+
+#ChisiamoList{
+  
+    list-style-image: url(media/spuntaverde.jpg); 
+}
+
+li#ChisiamoList{
+    font-size: 20px;
+    font-weight: bolder;
+    margin-bottom: 2px;
+}
+
+#ancoraLogin {
+    margin-left: 1030px;
+    margin-top: -60px;
+}
+
+#ChisiamoImg1{
+    background: url(media/chisiamoimg.jpg);
+    height: 427px;
+    width: 640px;
+}
+
+#presentazione{
+    float:left;
+    width: 550px;
     margin: auto;
 }
+
+#img1{
+    margin-top: 70px;
+    width: 50%; 
+    height: 70%
+  
+}
+
+.ChisiamoMain {
+    clear: left;
+    height: 500px;
+}
+
+/*
+body{
+    background-image: url(media/background.png);
+    width: 1100px;
+    margin: auto;
+}
+
+
 
 .barraNavigazione {
   background-color: #333;
@@ -40,17 +84,12 @@ body{
     top:2.1%;
 }
 
+
 #servizi {
     clear:left;
 }
 
-.footer {
-    background-color: #333;
-}
-
-/*HOMEPAGE*/
-
-.HomeMain {
+.main {
 clear:left; 
 }
 
@@ -66,11 +105,13 @@ clear:left;
     float:left;
     width: 530px;
     margin-left: -550px;
+    
     padding: 10px;
 }
 
 .sectionHomeElem2 {
     width: 530px;
+   
     padding: 10px;
 }
 
@@ -81,26 +122,7 @@ clear:left;
 }
 
 
-/*//CHISIAMO*/
-
-#presentazione{
-    float:left;
-    width: 550px;
+.footer {
+    background-color: #333;
 }
-
-#ChisiamoList{
-      list-style-image: url(media/spuntaverde.jpg); 
-}
-
-li#ChisiamoList{
-    font-size: 20px;
-    font-weight: bolder;
-    margin-bottom: 2px;
-}
-
-#ChisiamoImg1{
-    height: 367px;
-    width: 550px;
-    margin-top: 50px;
-}
-
+*/

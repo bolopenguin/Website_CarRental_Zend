@@ -9,7 +9,14 @@
         Le Auto
     </a>
 
-            <a href="" title="Il nostro profilo azienda">
+            <a href="<?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'viewstatic',
+                        'staticPage' => 'chisiamo'
+                        ), 
+                        'default',true
+                    ); 
+                 ?>" title="Il nostro profilo azienda">
                 Chi siamo
             </a>
     <a href="" title="Domande Frequenti">
