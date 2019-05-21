@@ -2,7 +2,8 @@ body{
     width: 1100px;
     height: 1100px;
     margin: auto;
-    //background-image: baseUrl ("")
+    background-image: url(media/background.png);
+    background-size: cover;
 }
 
 .barraNavigazione {
