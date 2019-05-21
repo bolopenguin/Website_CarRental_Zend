@@ -1,7 +1,14 @@
        
     <br>
     
-    <a href="" title="Cosa offriamo">
+    <a href="<?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'viewstatic',
+                        'staticPage' => 'servizi'
+                        ), 
+                        'default',true
+                    ); 
+                 ?>" title="Cosa offriamo">
         Servizi
     </a>
 
@@ -9,16 +16,18 @@
         Le Auto
     </a>
 
-            <a href="<?= $this->url(array(
-                        'controller' => 'public',
-                        'action'     => 'viewstatic',
-                        'staticPage' => 'chisiamo'
-                        ), 
-                        'default',true
-                    ); 
-                 ?>" title="Il nostro profilo azienda">
-                Chi siamo
-            </a>
+    <a href="<?= $this->url(array(
+                'controller' => 'public',
+                'action'     => 'viewstatic',
+                'staticPage' => 'chisiamo'
+                ), 
+                'default',true
+            ); 
+         ?>" title="Il nostro profilo azienda">
+        Chi siamo
+    </a>
+    
+    
     <a href="" title="Domande Frequenti">
         Faq
     </a>
