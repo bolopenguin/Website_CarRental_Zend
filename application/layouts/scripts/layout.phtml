@@ -9,19 +9,25 @@
     
     <body>
    
-            <nav class="barraNavigazione">
-        
-            <a href="">
+        <nav class="barraNavigazione">
+
+            <a href="<?= $this->url(array(
+                        'controller' => 'index',
+                        'action'     => 'index',
+                        ), 
+                        'default',true
+                    ); 
+                 ?>">
                 <div id="Logo" alt="Logo"> 
                 </div>
             </a>
             <a href="" id="ancoraLogin">
                 <div id="Login" alt="Login">
-            </div>
+                </div>
             </a>
-        
-         <?= $this->render('_topnavmain0.phtml') ?>           
-            </nav>
+
+            <?= $this->render('_topnavmain0.phtml') ?>           
+        </nav>
             
         <div id="page">
   	  <div id="page-bgtop">
@@ -32,14 +38,14 @@
   	  </div>
 	</div>
 
-    <footer class="footer">
-        <p style="text-align: center; color: white; font-size: 12px">
-                @2020 Lorem Ipsum Car. Tutti i diritti non riservati<br>
-        Web site powered by Gruppo 8
-        </p>
-    </footer>
+        <footer class="footer">
+            <p style="text-align: center; color: white; font-size: 12px">
+                    @2020 Lorem Ipsum Car. Tutti i diritti non riservati<br>
+            Web site powered by Gruppo 8
+            </p>
+        </footer>
             
        
-</body>
+    </body>
 
 </html>
