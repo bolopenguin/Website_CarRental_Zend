@@ -39,5 +39,20 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $this->_view->headMeta()->appendHttpEquiv('Content-Language', 'it-IT');
         $this->_view->headLink()->appendStylesheet($this->_view->baseUrl('css/styles.css'));
     }
+    
+        protected function _initDefaultModuleAutoloader() {
+        //meccanismo che aggiunge delle regole a quelle di base
+        $loader = Zend_Loader_Autoloader::getInstance();
+        //recuperiamo l'Autoloader con getInstance, che è un singleton
+        $loader->registerNamespace('App_');
+        //registerNamespace definisce che un file si trova nel path indicato nel suo nome
+        //es. App_Model_Abstract si troverà in library/app/model
+        //così facendo zend saprà dove cercare i file che cominciano il proprio nome con "App_"
+        $this->getResourceLoader()
+                ->addResourceType('modelResource', 'models/resources', 'Resource');
+        //collassiamo in path "/model/resources" in "/Resource"
+        //addResourceType con primo paramtero la risorsa che voglio rimappare, secondo parametro la mappatura attuale,
+        //terzo parametro la mappatura che voglio ottenere
+    }
 }
 
