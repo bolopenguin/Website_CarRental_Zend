@@ -104,3 +104,56 @@ li#ChisiamoList{
     margin-top: 50px;
 }
 
+/*//SERVIZI*/
+
+.ServiziMain {
+    clear: left;
+    height: auto;
+}
+
+#navbarservice {
+    width: 350px;
+    float: left;
+}
+
+#immagineservizi {
+    margin-left: 40px;
+    margin-top: 20px;
+    width: 60%; 
+    height: 320px;
+}
+
+#contentservizi {
+    margin-left: 390px;
+    width: 640px;
+}
+
+/*//FAQ*/
+
+.FaqMain {
+    clear: left;
+}
+
+
+.faq {
+    margin-left: 1000px;
+    clear: left;
+}
+
+.faqElem1 {
+    float: left;
+    width: 980px;
+    margin-left: -1000px;
+    
+    padding: 10px;
+}
+
+.faqElem2 {
+    width: 80px;
+    padding: 10px;
+}
+
+.formNuovaFaq{
+    border: 3px solid #333;
+    padding: 10px;
+}

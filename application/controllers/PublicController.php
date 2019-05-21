@@ -3,7 +3,8 @@
 class PublicController extends Zend_Controller_Action {
 
     protected $_logger;
-// Nel controller sono definite le azioni che a seconda dei parametri del model prendono i dati e li iniettano nella vista
+    // Nel controller sono definite le azioni che a seconda dei parametri del model prendono i dati e li iniettano nella vista
+    
     public function init() {
         $this->_helper->layout->setLayout('layout'); //helper layout che definisce l'attivazione del layout all'interno della nostra applicazione
         // setLayout va a recuperare il file main.phtml nella cartella di layout che abbiamo deinito nel file application.ini
@@ -23,9 +24,9 @@ class PublicController extends Zend_Controller_Action {
     public function viewstaticAction() {
         $page = $this->_getParam('staticPage'); 
         if ($page == "servizi") {
-            $this->_view->headTitle('Servizi');
+            $this->view->headTitle('Servizi');
         } elseif ($page == "chisiamo") {
-            $this->_view->headTitle('Chi siamo');
+            $this->view->headTitle('Chi siamo');
         }
        
         $this->render($page);
