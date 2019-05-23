@@ -3,22 +3,26 @@
         <div class="prod">
             <div style="width: auto; border: 1px solid black; margin: 10px;">
                 <h2 style="margin-left: 15px"> <?php echo '' . $auto->marca . " " . $auto->modello . '' ?> </h2>
-        ˙        <div style="width: auto; display: inline-block;">
+        ˙        <div style="width: auto; float: left; margin-right: 10px;">
                     <div style="border: 1px solid black; margin: 10px;">
                         <?php echo $this->autoImg($auto->foto, array('class' => 'imagefrm'))?>
                     </div>
                 </div>
-                <div style="width: auto; display: inline-block;">
-                    <div style="margin: 10px;">
+                <div style="width: auto;">
+                    <div class="testoauto">
                         <ul>
                             <li>  <?php echo'Allestimento: ' . $auto->allestimento . '' ?> </li>
                             <li>  <?php echo'Numero Posti: ' . $auto->numero_posti . '' ?> </li>
                             <li>  <?php echo'Targa: ' . $auto->targa . '' ?> </li>                 
                         </ul>
+                        <p>DESCRIZIONE AUTO DESCRIZIONE AUTO DESCRIZIONE AUTO <br>
+                        DESCRIZIONE AUTO DESCRIZIONE AUTO DESCRIZIONE AUTO <br>
+                        DESCRIZIONE AUTO DESCRIZIONE AUTO DESCRIZIONE AUTO <br>
+                        DESCRIZIONE AUTO DESCRIZIONE AUTO DESCRIZIONE AUTO <br></p>
                     </div>
                 </div>
-                <div style="margin: 10px; border: 2px solid red; padding: 10px;">
-                    <p style="text-align:right"> Noleggia a soli  <?php echo'' . $auto->prezzo_giornaliero . '€' ?> </p>
+        <div class="borderprezzo">
+                    <p> Noleggia a soli  <?php echo'' . $auto->prezzo_giornaliero . '€' ?> </p>
                 </div>
             </div>
         </div>
