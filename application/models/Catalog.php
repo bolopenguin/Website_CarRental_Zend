@@ -9,6 +9,5 @@ class Application_Model_Catalog extends App_Model_Abstract {
     public function getAllAuto($paged){
         return $this->getResource('Auto')->getAllAuto($paged);
     }
- 
-   
-    }
+  
+}

@@ -6,7 +6,7 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract
     protected $_primary  = 'targa';
     protected $_rowClass = 'Application_Resource_Auto_Item';
     
-	public function init()
+    public function init()
     {            
     }
     

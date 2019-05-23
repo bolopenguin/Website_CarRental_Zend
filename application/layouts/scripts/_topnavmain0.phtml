@@ -34,7 +34,13 @@
     </a>
     
     
-    <a href="" title="Domande Frequenti">
+    <a href="<?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'faq',
+                                          ), 
+                        'default',true
+                    ); 
+                 ?>" title="Domande Frequenti">
         Faq
     </a>
 

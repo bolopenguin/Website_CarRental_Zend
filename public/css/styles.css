@@ -172,3 +172,27 @@ margin-bottom: 10px;
 border: 2px solid red;
 width: 160px;
 }
+
+/*Faq*/
+
+.faq {
+    margin-left: 1000px;
+    clear: both;
+}
+
+.faqElem1 {
+    float: left;
+    width: 980px;
+    margin-left: -1000px;
+    
+    padding: 10px;
+}
+
+.barra{
+    margin-left: -1000px;
+}
+
+.faqElem2 {
+    width: 80px;
+    padding: 10px;
+}
