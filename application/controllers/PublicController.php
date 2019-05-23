@@ -1,7 +1,8 @@
 <?php
 // meccanismi di naming vanno rispettati strettamente
 class PublicController extends Zend_Controller_Action {
-
+    
+    protected $_catalogModel;
     protected $_logger;
     // Nel controller sono definite le azioni che a seconda dei parametri del model prendono i dati e li iniettano nella vista
     
@@ -9,15 +10,22 @@ class PublicController extends Zend_Controller_Action {
         $this->_helper->layout->setLayout('layout'); //helper layout che definisce l'attivazione del layout all'interno della nostra applicazione
         // setLayout va a recuperare il file main.phtml nella cartella di layout che abbiamo deinito nel file application.ini
         $this->_logger = Zend_Registry::get('log');
+        $this->_catalogModel = new Application_Model_Catalog();
     }
     
     public function indexAction(){
-        //i dati vengono gestiti dal model, costruiremo una classe "catalog.php" con le proprietà che ci interessano, successivamente
-        //inizializzeremo i dati da un DB. Così attiviamo il metodo "getProds" del model per estrarre i prodotti
-        $prods = $this->_catalogModel->getProds();
-        
+       
     }
 
+    public function leautoAction(){
+        $vetture=$this->_catalogModel->getAllAuto();
+        $paged = $this->_getParam('page',1);
+        $this->view->assign(array(
+            		  		'auto' => $vetture
+            		));
+         $this->view->headTitle('Le Auto');
+            }
+    
 
     // la viewAction dovrà iniettare il contenuto where o il contenuto who
         // abbiamo formalizato staticPage nel file topnavmain 

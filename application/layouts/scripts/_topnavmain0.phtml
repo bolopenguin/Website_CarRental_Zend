@@ -12,7 +12,13 @@
         Servizi
     </a>
 
-    <a href="" title="Catalogo">     
+    <a href="<?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'leauto',
+                                          ), 
+                        'default',true
+                    ); 
+                 ?>" title="Catalogo">     
         Le Auto
     </a>
 
