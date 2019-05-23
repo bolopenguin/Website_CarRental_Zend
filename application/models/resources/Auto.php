@@ -10,11 +10,11 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract
     {            
     }
     
-    public function getAllAuto($paged=true){
+    public function getAllAuto($paged=null){
         
         $select = $this->select()->order('targa') ;
                                     
-        if(null!==$paged){
+        if($paged !== null){
             $adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
 			$paginator = new Zend_Paginator($adapter);
 			$paginator->setItemCountPerPage(3)

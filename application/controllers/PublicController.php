@@ -18,8 +18,8 @@ class PublicController extends Zend_Controller_Action {
     }
 
     public function leautoAction(){
-        $vetture=$this->_catalogModel->getAllAuto();
         $paged = $this->_getParam('page',1);
+        $vetture = $this->_catalogModel->getAllAuto($paged);
         $this->view->assign(array(
             		  		'auto' => $vetture
             		));
