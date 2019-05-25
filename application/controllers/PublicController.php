@@ -5,6 +5,7 @@ class PublicController extends Zend_Controller_Action {
     protected $_questionsModel;
     protected $_catalogModel;
     protected $_logger;
+    protected $_form;
     // Nel controller sono definite le azioni che a seconda dei parametri del model prendono i dati e li iniettano nella vista
     
     public function init() {
@@ -13,27 +14,72 @@ class PublicController extends Zend_Controller_Action {
         $this->_logger = Zend_Registry::get('log');
         $this->_catalogModel = new Application_Model_Catalog();
         $this->_questionsModel = new Application_Model_Questions();
+        $this->view->filterForm = $this->getAutoForm();
     }
     
     public function indexAction(){
        
     }
-
-    public function leautoAction(){
-        $paged = $this->_getParam('page',1);
-        $vetture = $this->_catalogModel->getAllAuto($paged);
-        $this->view->assign(array('auto' => $vetture));
-        $this->view->headTitle('Le Auto');
+    
+    
+    
+    
+    public function filterautoAction()
+   {
+           if (!$this->getRequest()->isPost()) {
+                   $this->_helper->redirector('leauto');
+           }
+           $form=$this->_form;
+           if (!$form->isValid($_POST)) {
+                   return $this->render('leauto');
+           }
+           $values = $form->getValues();
+           $vetture = $this->_catalogModel->getFilteredAuto($values);
+           $this->_helper->redirector('leauto');
+   }
+   
+    private function getAutoForm()
+    {
+            $urlHelper = $this->_helper->getHelper('url');
+            $this->_form = new Application_Form_Public_Auto_Filter();
+            $this->_form->setAction($urlHelper->url(array(
+                            'controller' => 'public',
+                            'action' => 'filterAuto'),
+                            'default'
+                            ));
+            return $this->_form;
     }
+    
+    public function leautoAction(){
+
+    $paged = $this->_getParam('page',1);
+
+    $vetture = $this->_catalogModel->getAllAuto($paged);
+
+
+    $this->view->assign(array('auto' => $vetture));
+    $this->view->headTitle('Le Auto');
+       
+    }
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     public function faqAction(){
         $faq = $this->_questionsModel->getAllFaq();
         $this->view->assign(array('faq' => $faq));
         $this->view->headTitle('FAQ');
     }
-
-    // la viewAction dovrà iniettare il contenuto where o il contenuto who
-        // abbiamo formalizato staticPage nel file topnavmain 
     public function viewstaticAction() {
         $page = $this->_getParam('staticPage'); 
         if ($page == "servizi") {

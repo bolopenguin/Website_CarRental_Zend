@@ -1,7 +1,11 @@
-<div id="catalog">
+<div class="catalog">
+    <div class="filters">
+        <p class="filter1" style="color: white">Fascia di prezzo e posti</p>   
+        <?php echo $this->filterForm ?>
+    </div>   
     <?php foreach ($this->auto as $auto) : ?>
         <div class="prod">
-            <div style="width: auto; border: 1px solid black; margin: 10px;">
+            <div class="contenitore">
                 <h2 style="margin-left: 15px"> <?php echo '' . $auto->marca . " " . $auto->modello . '' ?> </h2>
         ˙        <div style="width: auto; float: left; margin-right: 10px;">
                     <div style="border: 1px solid black; margin: 10px;">
