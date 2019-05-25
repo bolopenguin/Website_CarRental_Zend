@@ -26,13 +26,17 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract
     }
     public function getFilteredAuto($values){
     
-        $min=$values->pricemin;
-        $max=$values->pricemax;
-        $posti=$values->numposti;
-        $select = $this->select()->where('prezzo_giornaliero >= ?', $min AND 'prezzo_giornaliero <= ?', $max AND 'numero_posti= ?' , $posti)
-                                 ->order('prezzo_giornaliero');
-
+        $min=$values[pricemin];
+        $max=$values[pricemax];
+        $posti=$values[numposti];
+        
+        $select = $this->select()
+                ->where('prezzo_giornaliero >= ?', $min)
+                ->where('prezzo_giornaliero <= ?', $max)
+                ->where('numero_posti >= ?' , $posti)
+                ->order('prezzo_giornaliero');
+        
         return $this->fetchAll($select);
-    }
+        }
         
     }

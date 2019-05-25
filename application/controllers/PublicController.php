@@ -23,28 +23,15 @@ class PublicController extends Zend_Controller_Action {
     
     
     
-    
-    public function filterautoAction()
-   {
-           if (!$this->getRequest()->isPost()) {
-                   $this->_helper->redirector('leauto');
-           }
-           $form=$this->_form;
-           if (!$form->isValid($_POST)) {
-                   return $this->render('leauto');
-           }
-           $values = $form->getValues();
-           $vetture = $this->_catalogModel->getFilteredAuto($values);
-           $this->_helper->redirector('leauto');
-   }
-   
     private function getAutoForm()
     {
             $urlHelper = $this->_helper->getHelper('url');
             $this->_form = new Application_Form_Public_Auto_Filter();
             $this->_form->setAction($urlHelper->url(array(
                             'controller' => 'public',
-                            'action' => 'filterAuto'),
+                            'action' => 'leauto',
+                            'search' => '1',
+                            ),
                             'default'
                             ));
             return $this->_form;
@@ -53,15 +40,33 @@ class PublicController extends Zend_Controller_Action {
     public function leautoAction(){
 
     $paged = $this->_getParam('page',1);
-
-    $vetture = $this->_catalogModel->getAllAuto($paged);
-
-
+    $search = (int)$this->_getParam('search', 0);
+    
+    if($search === 0){
+        
+        $vetture = $this->_catalogModel->getAllAuto($paged);
+        
+    } elseif($search === 1){
+        
+        if (!$this->getRequest()->isPost()) {             
+            $this->_helper->redirector('leauto');
+        }
+        
+        $form=$this->_form;
+        
+        if (!$form->isValid($_POST)) {
+                return $this->render('leauto');
+        }
+        
+        $values = $form->getValues();
+        $vetture = $this->_catalogModel->getFilteredAuto($values);
+    }
+    
+    
     $this->view->assign(array('auto' => $vetture));
     $this->view->headTitle('Le Auto');
        
     }
-    
 
     
     
