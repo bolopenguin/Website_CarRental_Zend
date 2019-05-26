@@ -1,9 +1,9 @@
 <?php
 
-class UserController extends Zend_Controller_Action {
-
+class AdminController extends Zend_Controller_Action {
+    
     public function init() {
-        $this->_helper->layout->setLayout('user');
+        $this->_helper->layout->setLayout('layout4');
         $this->_authService = new Application_Service_Auth();
     }
 
@@ -15,5 +15,4 @@ class UserController extends Zend_Controller_Action {
         $this->_authService->clear();
         return $this->_helper->redirector('index', 'public');
     }
-
 }

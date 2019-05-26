@@ -3,6 +3,7 @@
 abstract class App_Model_Abstract {
 
     protected $_resources = array();
+
     //array vuoto inizializzato
 
     public function getResource($name) {
@@ -16,7 +17,6 @@ abstract class App_Model_Abstract {
                 'Resource',
                 $name));
             $this->_resources[$name] = new $class();
-            
         }
         return $this->_resources[$name];
     }
@@ -26,8 +26,7 @@ abstract class App_Model_Abstract {
         return $ns[0];
     }
 
-    public function fetchAll($where = null, $order = null, $count = null, $offset = null)
-    {
+    public function fetchAll($where = null, $order = null, $count = null, $offset = null) {
         if (!($where instanceof Zend_Db_Table_Select)) {
             $select = $this->select();
             if ($where !== null) {
@@ -43,12 +42,12 @@ abstract class App_Model_Abstract {
             $select = $where;
         }
         $rows = $this->_fetch($select);
-        $data  = array(
-            'table'    => $this,
-            'data'     => $rows,
+        $data = array(
+            'table' => $this,
+            'data' => $rows,
             'readOnly' => $select->isReadOnly(),
             'rowClass' => $this->getRowClass(),
-            'stored'   => true
+            'stored' => true
         );
         $rowsetClass = $this->getRowsetClass();
         if (!class_exists($rowsetClass)) {
@@ -57,4 +56,5 @@ abstract class App_Model_Abstract {
         }
         return new $rowsetClass($data);
     }
+
 }

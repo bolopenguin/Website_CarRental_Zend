@@ -1,0 +1,79 @@
+    <a href="<?= $this->url(array(
+                'controller' => 'index',
+                'action'     => 'index',
+                ), 
+                'default',true
+            ); 
+         ?>">
+        <div id="Logo" alt="Logo"> 
+        </div>
+    </a>
+
+    <a href="<?= $this->url(array(
+                'controller' => 'public',
+                'action'     => 'login',
+                ), 
+                'default',true
+            ); 
+         ?>" id="ancoraLogin">
+        <div id="Logout" alt="Logout">
+        </div>
+    </a>  
+
+    <br>
+    
+    <a href="<?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'viewstatic',
+                        'staticPage' => 'servizi'
+                        ), 
+                        'default',true
+                    ); 
+                 ?>" title="Cosa offriamo">
+        Servizi
+    </a>
+
+    <a href="<?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'leauto',
+        ), 
+                        'default',true
+                    ); 
+                 ?>" title="Catalogo">     
+        Le Auto
+    </a>
+
+    <a href="<?= $this->url(array(
+                'controller' => 'public',
+                'action'     => 'viewstatic',
+                'staticPage' => 'chisiamo'
+                ), 
+                'default',true
+            ); 
+         ?>" title="Il nostro profilo azienda">
+        Chi siamo
+    </a>
+    
+    
+    <a href="<?= $this->url(array(
+                        'controller' => 'public',
+                        'action'     => 'faq',
+                                          ), 
+                        'default',true
+                    ); 
+                 ?>" title="Domande Frequenti">
+        Faq
+    </a>
+    
+    <a href="<?= $this->url(array(
+                        'controller' => 'index',
+                        'action'     => 'index',
+                                          ), 
+                        'default',true
+                    ); 
+                 ?>" title="Area Riservata">
+        Area Riservata
+    </a>
+
+
+

@@ -1,4 +1,25 @@
-       
+    <a href="<?= $this->url(array(
+                'controller' => 'index',
+                'action'     => 'index',
+                ), 
+                'default',true
+            ); 
+         ?>">
+        <div id="Logo" alt="Logo"> 
+        </div>
+    </a>
+
+    <a href="<?= $this->url(array(
+                'controller' => 'public',
+                'action'     => 'login',
+                ), 
+                'default',true
+            ); 
+         ?>" id="ancoraLogin">
+        <div id="Login" alt="Login">
+        </div>
+    </a>  
+
     <br>
     
     <a href="<?= $this->url(array(

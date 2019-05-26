@@ -42,6 +42,17 @@ body{
     top:2.1%;
 }
 
+
+#Logout {
+    background: url(media/logoLogout.png) no-repeat left top;
+    height: 35px;
+    width: 35px;
+    clear: left;
+    position: absolute;
+    right: auto;
+    top:2.1%;
+}
+
 #servizi {
     clear:left;
 }

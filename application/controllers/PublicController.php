@@ -6,22 +6,23 @@ class PublicController extends Zend_Controller_Action {
     protected $_catalogModel;
     protected $_logger;
     protected $_form;
+    protected $_authService;
     // Nel controller sono definite le azioni che a seconda dei parametri del model prendono i dati e li iniettano nella vista
     
     public function init() {
-        $this->_helper->layout->setLayout('layout'); //helper layout che definisce l'attivazione del layout all'interno della nostra applicazione
+        $this->_helper->layout->setLayout('layout1'); //helper layout che definisce l'attivazione del layout all'interno della nostra applicazione
         // setLayout va a recuperare il file main.phtml nella cartella di layout che abbiamo deinito nel file application.ini
         $this->_logger = Zend_Registry::get('log');
         $this->_catalogModel = new Application_Model_Catalog();
         $this->_questionsModel = new Application_Model_Questions();
         $this->view->filterForm = $this->getAutoForm();
+        $this->view->loginForm = $this->getLoginForm();
+        $this->_authService = new Application_Service_Auth();
     }
     
     public function indexAction(){
        
     }
-    
-    
     
     private function getAutoForm()
     {
@@ -67,24 +68,13 @@ class PublicController extends Zend_Controller_Action {
     $this->view->headTitle('Le Auto');
        
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     public function faqAction(){
         $faq = $this->_questionsModel->getAllFaq();
         $this->view->assign(array('faq' => $faq));
         $this->view->headTitle('FAQ');
     }
+    
     public function viewstaticAction() {
         $page = $this->_getParam('staticPage'); 
         if ($page == "servizi") {
@@ -94,6 +84,38 @@ class PublicController extends Zend_Controller_Action {
         }
        
         $this->render($page);
+    }
+    
+    public function loginAction() {
+        
+    }
+    
+    public function authenticateAction() {
+        $request = $this->getRequest();
+        if (!$request->isPost()) {
+            return $this->_helper->redirector('login');
+        }
+        $form = $this->_form;
+        if (!$form->isValid($request->getPost())) {
+            $form->setDescription('Attenzione: alcuni dati inseriti sono errati.');
+            return $this->render('login');
+        }
+        if (false === $this->_authService->authenticate($form->getValues())) {
+            //authenticate è nel file Auth.php in services
+            $form->setDescription('Autenticazione fallita. Riprova');
+            return $this->render('login');
+        }
+        return $this->_helper->redirector('index', $this->_authService->getIdentity()->role);
+    }
+
+    private function getLoginForm() {
+        $urlHelper = $this->_helper->getHelper('url');
+        $this->_form = new Application_Form_Public_Auth_Login();
+        $this->_form->setAction($urlHelper->url(array(
+                    'controller' => 'public',
+                    'action' => 'authenticate'), 'default'
+        ));
+        return $this->_form;
     }
 
 }
