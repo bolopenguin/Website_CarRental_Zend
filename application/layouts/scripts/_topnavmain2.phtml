@@ -1,5 +1,5 @@
     <a href="<?= $this->url(array(
-                'controller' => 'public',
+                'controller' => 'user',
                 'action'     => 'index',
                 ), 
                 'default',true
@@ -10,13 +10,13 @@
     </a>
 
     <a href="<?= $this->url(array(
-                'controller' => 'public',
-                'action'     => 'login',
+                'controller' => 'admin',
+                'action'     => 'logout',
                 ), 
                 'default',true
             ); 
          ?>" id="ancoraLogin">
-        <div id="Login" alt="Login">
+        <div id="Logout" alt="Logout">
         </div>
     </a>  
 
@@ -64,5 +64,16 @@
                  ?>" title="Domande Frequenti">
         Faq
     </a>
+    
+      <a href="<?= $this->url(array(
+                        'controller' => 'index',
+                        'action'     => 'index',
+                                          ), 
+                        'default',true
+                    ); 
+                 ?>" title="Area Riservata">
+        Area Riservata
+    </a>
+
 
 
