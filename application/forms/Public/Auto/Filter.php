@@ -1,31 +1,46 @@
 <?php
+class Application_Form_Public_Auto_Filter extends App_Filter_Abstract
+{
 
-class Application_Form_Public_Auto_Filter extends Zend_Form {
-
-    public function init() {
-        $this->setMethod('post');
-        $this->setName('filterAuto');
-        $this->setAction('');
-        $this->setAttrib('enctype', 'multipart/form-data');
-
-        $this->addElement('text', 'pricemin', array(
+	public function init()
+	{
+                $this->setMethod('post');
+		$this->setName('filterAuto');
+		$this->setAction('');
+		$this->setAttrib('enctype', 'multipart/form-data');
+        
+            $this->addElement('text', 'pricemin', array(
             'label' => 'Prezzo Min',
-            'required' => false
-        ));
-
-        $this->addElement('text', 'pricemax', array(
+            'required' => false,
+            'filters' => array('LocalizedToNormalized'),
+            'validators' => array(array('Float', true, array('locale' => 'en_US'))),
+            'decorators' => $this->elementDecorators,
+        		));
+            
+            $this->addElement('text', 'pricemax', array(
             'label' => 'Prezzo Max',
-            'required' => false
-        ));
-
-        $this->addElement('text', 'numposti', array(
+            'required' => false,
+            'filters' => array('LocalizedToNormalized'),
+            'validators' => array(array('Float', true, array('locale' => 'en_US'))),
+            'decorators' => $this->elementDecorators,
+        		));
+            
+            $this->addElement('text', 'numposti', array(
             'label' => 'Numero posti',
-            'required' => false
-        ));
-
-        $this->addElement('submit', 'search', array(
-            'label' => 'Fatto'
-        ));
-    }
-
+            'required' => false,
+                'decorators' => $this->elementDecorators,
+        		));
+            
+            $this->addElement('submit', 'search', array(
+            'label' => 'Ricerca',
+                'decorators' => $this->buttonDecorators,
+                ));
+                
+          $this->setDecorators(array(
+			'FormElements',
+			array('HtmlTag', array('tag' => 'table', 'class' => 'filtertable')),
+			array('Description', array('placement' => 'prepend', 'class' => 'formerror')),
+			'Form'
+		));
+        }
 }

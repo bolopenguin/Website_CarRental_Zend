@@ -11,6 +11,7 @@ class Application_Model_Catalog extends App_Model_Abstract {
     }
  
    public function getFilteredAuto($values){
+       $this->_logger->info($values[pricemin]);
        return $this->getResource('Auto')->getFilteredAuto($values);
    }
     

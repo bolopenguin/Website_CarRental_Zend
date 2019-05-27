@@ -6,6 +6,7 @@ class PublicController extends Zend_Controller_Action {
     protected $_catalogModel;
     protected $_logger;
     protected $_form;
+    protected $_form1;
     protected $_authService;
     // Nel controller sono definite le azioni che a seconda dei parametri del model prendono i dati e li iniettano nella vista
     
@@ -27,15 +28,15 @@ class PublicController extends Zend_Controller_Action {
     private function getAutoForm()
     {
             $urlHelper = $this->_helper->getHelper('url');
-            $this->_form = new Application_Form_Public_Auto_Filter();
-            $this->_form->setAction($urlHelper->url(array(
+            $this->_form1 = new Application_Form_Public_Auto_Filter();
+            $this->_form1->setAction($urlHelper->url(array(
                             'controller' => 'public',
                             'action' => 'leauto',
                             'search' => '1',
                             ),
                             'default'
                             ));
-            return $this->_form;
+            return $this->_form1;
     }
     
     public function leautoAction(){
@@ -53,16 +54,16 @@ class PublicController extends Zend_Controller_Action {
             $this->_helper->redirector('leauto');
         }
         
-        $form=$this->_form;
+        $form=$this->_form1;
         
         if (!$form->isValid($_POST)) {
+            $form->setDescription('Attenzione: alcuni dati inseriti sono errati.');
                 return $this->render('leauto');
         }
         
         $values = $form->getValues();
-        $vetture = $this->_catalogModel->getFilteredAuto($values);
+        $vetture = $this->_catalogModel->getFilteredAuto($values,$paged);
     }
-    
     
     $this->view->assign(array('auto' => $vetture));
     $this->view->headTitle('Le Auto');

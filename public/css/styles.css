@@ -141,36 +141,6 @@ li#ChisiamoList{
     width: 640px;
 }
 
-/*//FAQ*/
-
-.FaqMain {
-    clear: left;
-}
-
-
-.faq {
-    margin-left: 1000px;
-    clear: left;
-}
-
-.faqElem1 {
-    float: left;
-    width: 980px;
-    margin-left: -1000px;
-    
-    padding: 10px;
-}
-
-.faqElem2 {
-    width: 80px;
-    padding: 10px;
-}
-
-.formNuovaFaq{
-    border: 3px solid #333;
-    padding: 10px;
-}
-
 /*catalogo1*/
 
 .borderprezzo{
@@ -206,4 +176,39 @@ width: 160px;
 .faqElem2 {
     width: 80px;
     padding: 10px;
+}
+
+/*FORMCATALOGO*/
+
+#search{
+    margin-left: 20px;
+}
+
+label.optional{
+    color: white;
+}
+
+#pricemin{
+    margin-right: 10px;
+}
+
+#pricemax{
+    margin-right: 10px;
+}
+
+.filtertable{
+    padding-top: 11px;
+}
+
+.filters{
+    margin-top: -10px;
+    padding-top: 8px;
+    padding-left: 16px;
+    padding-bottom: 5px;
+    background-color:#333 ; 
+}
+
+.formerror{
+    padding-left: 7px;
+    color: red;
 }
