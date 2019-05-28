@@ -41,8 +41,8 @@ class PublicController extends Zend_Controller_Action {
     
     public function leautoAction(){
 
-    $paged = $this->_getParam('page',1);
     $search = (int)$this->_getParam('search', 0);
+    $paged = $this->_getParam('page',1);
     
     if($search === 0){
         

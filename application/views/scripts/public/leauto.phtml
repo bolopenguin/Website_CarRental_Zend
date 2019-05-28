@@ -3,15 +3,20 @@
         <hr style="width: 1098px; margin-left: -16px; color: white">
         <?php echo $this->filterForm ?>
     </div>   
+    <h2 style="text-align:center; color: #333;">
+        LA NOSTRA FLOTTA
+    </h2>
     <?php foreach ($this->auto as $auto) : ?>
         <div class="prod">
+            <hr class="barracatalogo">
             <div class="contenitore">
-                <h2 style="margin-left: 15px"> <?php echo '' . $auto->marca . " " . $auto->modello . '' ?> </h2>
+               
         ˙        <div style="width: auto; float: left; margin-right: 10px;">
                     <div style="border: 1px solid black; margin: 10px;">
                         <?php echo $this->autoImg($auto->foto, array('class' => 'imagefrm'))?>
                     </div>
                 </div>
+         <h2 style="margin-left: 15px"> <?php echo '' . $auto->marca . " " . $auto->modello . '' ?> </h2>
                 <div style="width: auto;">
                     <div class="testoauto">
                         <ul>
@@ -19,10 +24,7 @@
                             <li>  <?php echo'Numero Posti: ' . $auto->numero_posti . '' ?> </li>
                             <li>  <?php echo'Targa: ' . $auto->targa . '' ?> </li>                 
                         </ul>
-                        <p>DESCRIZIONE AUTO DESCRIZIONE AUTO DESCRIZIONE AUTO <br>
-                        DESCRIZIONE AUTO DESCRIZIONE AUTO DESCRIZIONE AUTO <br>
-                        DESCRIZIONE AUTO DESCRIZIONE AUTO DESCRIZIONE AUTO <br>
-                        DESCRIZIONE AUTO DESCRIZIONE AUTO DESCRIZIONE AUTO <br></p>
+                        
                     </div>
                 </div>
         <div class="borderprezzo">

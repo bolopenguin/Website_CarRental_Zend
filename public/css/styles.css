@@ -143,6 +143,15 @@ li#ChisiamoList{
 
 /*catalogo1*/
 
+.barracatalogo{
+     clear: both;
+    width: 1100px;
+}
+
+.testoauto{
+    margin-bottom: 40px;
+}
+
 .borderprezzo{
 text-align: center;
 font-weight: bolder;
@@ -152,6 +161,10 @@ margin-left: 900px;
 margin-bottom: 10px;
 border: 2px solid red;
 width: 160px;
+}
+
+.prod{
+    clear: left;
 }
 
 /*Faq*/
@@ -169,8 +182,10 @@ width: 160px;
     padding: 10px;
 }
 
-.barra{
+.barrafaq{
     margin-left: -1000px;
+    clear: both;
+    width: 1100px;
 }
 
 .faqElem2 {
