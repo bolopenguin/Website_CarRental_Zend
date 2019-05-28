@@ -7,7 +7,10 @@ class AdminController extends Zend_Controller_Action {
         $this->_authService = new Application_Service_Auth();
     }
 
-    public function indexAction() {
+    public function indexAction() { 
+    }
+
+    public function adminareaAction(){
         
     }
 

@@ -144,12 +144,14 @@ li#ChisiamoList{
 /*catalogo1*/
 
 .barracatalogo{
-     clear: both;
-    width: 1100px;
+   clear: both;
+   width: 1100px;
+   margin-top: 10px;
 }
 
 .testoauto{
     margin-bottom: 40px;
+    margin-left: 15px;
 }
 
 .borderprezzo{
@@ -165,6 +167,7 @@ width: 160px;
 
 .prod{
     clear: left;
+    margin-top: 5px;
 }
 
 /*Faq*/
