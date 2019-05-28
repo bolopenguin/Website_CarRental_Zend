@@ -26,9 +26,9 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract
     }
     public function getFilteredAuto($values){
     
-        $min=$values[pricemin];
-        $max=$values[pricemax];
-        $posti=$values[numposti];
+        $min=$values['pricemin'];
+        $max=$values['pricemax'];
+        $posti=$values['numposti'];
         
         $select = $this->select()
                 ->where('prezzo_giornaliero >= ?', $min)
