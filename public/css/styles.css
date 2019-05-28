@@ -230,3 +230,11 @@ label.optional{
     padding-left: 7px;
     color: red;
 }
+
+/*   AREA ADMIN  */
+
+.adminsection{
+    width: 300px;
+    height: auto;
+    float: left;
+}

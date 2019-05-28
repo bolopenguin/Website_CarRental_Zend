@@ -3,7 +3,8 @@
 class StaffController extends Zend_Controller_Action {
     
     public function init() {
-        $this->_helper->layout->setLayout('layout3');
+        $role=$this->_getParam('role',3);
+        $this->_helper->layout->setLayout('layout'.$role);
         $this->_authService = new Application_Service_Auth();
     }
 
