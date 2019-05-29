@@ -3,8 +3,7 @@
 class UserController extends Zend_Controller_Action {
 
     public function init() {
-        $role=$this->_getParam('role',2);
-        $this->_helper->layout->setLayout('layout'.$role);
+        $this->_helper->layout->setLayout('layout2');
         $this->_authService = new Application_Service_Auth();
     }
 
