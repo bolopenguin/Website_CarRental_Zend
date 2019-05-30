@@ -139,7 +139,7 @@ li#ChisiamoList{
 #contentservizi {
     margin-left: 390px;
     width: 640px;
-}
+} 
 
 /*catalogo1*/
 
@@ -147,6 +147,11 @@ li#ChisiamoList{
    clear: both;
    width: 1100px;
    margin-top: 10px;
+}
+
+.imagefrm{
+    height: 232px;
+    width: 360px;
 }
 
 .testoauto{

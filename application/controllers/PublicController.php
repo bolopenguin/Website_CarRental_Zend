@@ -11,7 +11,7 @@ class PublicController extends Zend_Controller_Action {
     // Nel controller sono definite le azioni che a seconda dei parametri del model prendono i dati e li iniettano nella vista
     
     public function init() {
-        $this->_helper->layout->setLayout('layout1'); //helper layout che definisce l'attivazione del layout all'interno della nostra applicazione
+        $this->_helper->layout->setLayout('layout'); //helper layout che definisce l'attivazione del layout all'interno della nostra applicazione
         // setLayout va a recuperare il file main.phtml nella cartella di layout che abbiamo deinito nel file application.ini
         $this->_logger = Zend_Registry::get('log');
         $this->_catalogModel = new Application_Model_Catalog();

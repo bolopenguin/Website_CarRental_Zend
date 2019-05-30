@@ -12,7 +12,7 @@ class Zend_View_Helper_AuthInfo extends Zend_View_Helper_Abstract {
             return;
         }
         if (false === $this->isLoggedIn()) {
-            return;
+            return 'unregistered';
         }
         return $this->_authService->getIdentity()->$info;
     }
