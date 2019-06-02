@@ -39,4 +39,13 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract
         return $this->fetchAll($select);
         }
         
+    public function addAuto($values){
+        $this->insert($values);
+    }
+    
+    public function deleteAuto($values){
+        $targa = $values['targa'];
+        $this->delete(array('targa = ?' => $targa));
+    }
+        
     }
