@@ -47,5 +47,5 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract
         $targa = $values['targa'];
         $this->delete(array('targa = ?' => $targa));
     }
-  
+        
     }
