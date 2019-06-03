@@ -1,7 +1,7 @@
 <?php
 
 class Application_Form_Staff_Crud_Elimina extends App_Form_Abstract {
-    
+
     public function init() {
         $this->setMethod('post');
         $this->setName('deleteAuto');
@@ -17,12 +17,15 @@ class Application_Form_Staff_Crud_Elimina extends App_Form_Abstract {
             'label' => 'Targa',
             'decorators' => $this->elementDecorators,
         ));
-        
-        
+
+
+
         $this->addElement('submit', 'add', array(
             'label' => 'Elimina',
             'decorators' => $this->buttonDecorators,
         ));
+        
+        
 
         $this->setDecorators(array(
             'FormElements',
@@ -31,5 +34,6 @@ class Application_Form_Staff_Crud_Elimina extends App_Form_Abstract {
             'Form'
         ));
     }
+   
 
 }

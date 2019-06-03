@@ -1,80 +1,100 @@
-<h3>
+<h2>
     Benvenuto nella tua area riservata
-</h3>
+</h2>
 
-<nav>
-    <a href="<?= $this->url(array(
-                    'controller' => 'staff',
-                    'action'     => 'staffarea',
-                    'operazione'       => 'inserisci',
-                ), 
-                    'default',true
-                ); 
-             ?>" title="Inserisci">     
-    Inserisci una nuova auto
+<nav style="width: 500px;float: left; margin-left: 1em">
+    <a href="<?=
+    $this->url(array(
+        'controller' => 'staff',
+        'action' => 'staffarea',
+        'operazione' => 'inserisci',
+            ), 'default', true
+    );
+    ?>" title="Inserisci">     
+        Inserisci una nuova auto
     </a>
-    
+
     <br>
-    
-    <a href="<?= $this->url(array(
-                    'controller' => 'staff',
-                    'action'     => 'staffarea',
-                    'operazione'       => 'elimina',
-                ), 
-                    'default',true
-                ); 
-             ?>" title="Elimina">     
-    Elimina un'auto
+
+    <a href="<?=
+    $this->url(array(
+        'controller' => 'staff',
+        'action' => 'staffarea',
+        'operazione' => 'elimina',
+            ), 'default', true
+    );
+    ?>" title="Elimina">     
+        Elimina un'auto
     </a>
-    
+
     <br>
-    
-    <a href="<?= $this->url(array(
-                    'controller' => 'staff',
-                    'action'     => 'staffarea',
-                    'operazione'       => 'modifica',
-                ), 
-                    'default',true
-                ); 
-             ?>" title="Modifica">     
-    Modifica i dati di un'auto
+
+    <a href="<?=
+    $this->url(array(
+        'controller' => 'staff',
+        'action' => 'staffarea',
+        'operazione' => 'modifica',
+            ), 'default', true
+    );
+    ?>" title="Modifica">     
+        Modifica i dati di un'auto
     </a>
-    
+
     <br>
-    
-    <a href="<?= $this->url(array(
-                    'controller' => 'staff',
-                    'action'     => 'staffarea',
-                    'operazione' => 'statistiche',
-                ), 
-                    'default',true
-                ); 
-             ?>" title="Statistiche">     
-    Statistiche delle prenotazioni
+
+    <a href="<?=
+    $this->url(array(
+        'controller' => 'staff',
+        'action' => 'staffarea',
+        'operazione' => 'statistiche',
+            ), 'default', true
+    );
+    ?>" title="Statistiche">     
+        Statistiche delle prenotazioni
     </a>
-    
+
 </nav>
 
-<div>
-    
-    <?php if($this->operazione === "inserisci"): ?>
-    <h4>Inserisci la nuova Auto</h4>
+
+
+<?php if ($this->operazione === "inserisci"): ?>
+<fieldset style="float: left" >
+    <legend> <h3> Inserisci la nuova Auto </h3> </legend>
         <?php echo $this->inserisciForm; ?>
-    <?php endif; ?>
-    
-    <?php if ($this->operazione === "elimina"): ?>
-    <h4>Inserisci la targa dell'auto che vuoi eliminare</h4>
-        <?php echo $this->eliminaForm;?>
-    <?php endif; ?>
-    
-    <?php if($this->operazione === "modifica"): ?>
-        
-    <?php endif; ?>
-    
-    <?php if($this->operazione === "statistiche"): ?>
-        
-    <?php endif; ?>
-    
-    
-</div>
+</fieldset>
+<?php endif; ?>
+
+<?php if ($this->operazione === "elimina"): ?>
+    <div style="float: right; margin-right: 150px">
+        <table style="background-color:#eee859; border-collapse:collapse; width: 400px; " border="">
+            <tr><th style="width: 240px"> Modello </th> <th style="width: 160px"> Targa </th> </tr>
+        </table>
+        <?php foreach ($this->auto as $auto) : ?>
+            <table style="background-color:#eee859; border-collapse:collapse; width: 400px; " border="">
+                <tbody>
+                    <tr>
+                        <td style="width: 240px"><?php echo '' . $auto->marca . " " . $auto->modello . '' ?></td>
+                        <td style="width: 160px"><?php echo'' . $auto->targa . '' ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        <?php endforeach ?>
+    </div>
+
+    <fieldset style="float: left">
+        <legend> <h3> Scegli la targa dell'auto da eliminare </h3> </legend>
+        <?php echo $this->eliminaForm; ?>
+    </fieldset>
+<?php endif; ?>
+
+<?php if ($this->operazione === "modifica"): ?>
+
+<?php endif; ?>
+
+<?php if ($this->operazione === "statistiche"): ?>
+
+<?php endif; ?>
+
+
+
 
