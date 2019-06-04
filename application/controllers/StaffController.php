@@ -125,9 +125,10 @@ class StaffController extends Zend_Controller_Action {
 			$this->_helper->redirector('staffarea');
 		}
 		$form=$this->_formModify;
+                $form2=$this->_formSelect;
 		if (!$form->isValid($_POST)) {
-			$form->setDescription('Attenzione: alcuni dati inseriti sono errati.');
-                        $this->view->assign(array('operazione' => 'modifica'));
+			$form2->setDescription('Attenzione: la modifica non è andata a buon fine. Riprovare');
+                        $this->view->assign(array('operazione' => 'seleziona'));
                         return $this->render('staffarea');	
 		}
 		$values = $form->getValues();

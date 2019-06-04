@@ -39,7 +39,7 @@ class Application_Form_Staff_Crud_Modifica extends App_Form_Abstract {
             'validators' => array(
                 array('StringLength', true, array(3, 20))
             ),
-            'required' => false,
+            'required' => true,
             'label' => 'Modello',
             'decorators' => $this->elementDecorators,
         ));
@@ -49,7 +49,7 @@ class Application_Form_Staff_Crud_Modifica extends App_Form_Abstract {
             'validators' => array(
                 array('StringLength', true, array(3, 20))
             ),
-            'required' => false,
+            'required' => true,
             'label' => 'Allestimento',
             'decorators' => $this->elementDecorators,
         ));
@@ -67,7 +67,7 @@ class Application_Form_Staff_Crud_Modifica extends App_Form_Abstract {
         
         $this->addElement('text', 'prezzo_giornaliero', array(
             'label' => 'Prezzo Giornaliero',
-            'required' => false,
+            'required' => true,
             'filters' => array('LocalizedToNormalized'),
             'validators' => array(array('Float', true, array('locale' => 'en_US'))),
             'decorators' => $this->elementDecorators,
@@ -77,7 +77,7 @@ class Application_Form_Staff_Crud_Modifica extends App_Form_Abstract {
             'validators' => array(
                 array('StringLength', true, array(1, 1))
             ),
-            'required' => false,
+            'required' => true,
             'label' => 'Numero Posti',
             'decorators' => $this->elementDecorators,
         ));
