@@ -2,10 +2,10 @@
 
 class Application_Form_Staff_Crud_Modifica extends App_Form_Abstract {
     
-    protected $_targa;
-
-
+    protected $_catalogModel;
+    
     public function init() {
+        $this->_catalogModel = new Application_Model_Catalog;
         $this->setMethod('post');
         $this->setName('addAuto');
         $this->setAction('');
@@ -83,7 +83,7 @@ class Application_Form_Staff_Crud_Modifica extends App_Form_Abstract {
         
         
         $this->addElement('submit', 'add', array(
-            'label' => 'Aggiungi',
+            'label' => 'Modifica',
             'decorators' => $this->buttonDecorators,
         ));
 
@@ -94,10 +94,20 @@ class Application_Form_Staff_Crud_Modifica extends App_Form_Abstract {
             'Form'
         ));
     }
-    public function populate($data)
+    
+    public function populate($targa)
     {
-        $this->{'targa'}->setValue($data);
-      
-      return $this;
+        $macchina = $this->_catalogModel->getAuto($targa);
+        
+        $this->targa->setValue($macchina['targa']);
+        $this->marca->setValue($macchina['marca']);   
+        $this->targa->setValue($macchina['targa']);  
+        $this->modello->setValue($macchina['modello']);
+        $this->allestimento->setValue($macchina['allestimento']);
+        $this->foto->setValue($macchina['foto']);
+        $this->prezzo_giornaliero->setValue($macchina['prezzo_giornaliero']);
+        $this->numero_posti->setValue($macchina['numero_posti']);                     
+        
+        return $this;
     }
 }

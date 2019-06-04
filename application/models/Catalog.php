@@ -10,6 +10,9 @@ class Application_Model_Catalog extends App_Model_Abstract {
         return $this->getResource('Auto')->getAllAuto($paged);
     }
  
+    public function getAuto($targa){
+        return $this->getResource('Auto')->getAuto($targa);
+    }
    public function getFilteredAuto($values){
        return $this->getResource('Auto')->getFilteredAuto($values);
    }
