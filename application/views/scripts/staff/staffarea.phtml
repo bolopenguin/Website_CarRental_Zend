@@ -89,11 +89,18 @@
 <?php endif; ?>
 
 <?php if ($this->operazione === "seleziona"): ?>
+    <fieldset style="width: 300px; clear:both;">
+        <legend> <h3> Seleziona la targa dell'auto da modificare </h3> </legend>
         <?php echo $this->selezionaForm; ?>
+    </fieldset>
 <?php endif; ?>
 
 <?php if ($this->operazione === "modifica"): ?>
-    <?php echo $this->modificaForm->populate($this->macchina);?>
+    <fieldset style="width: 300px; clear:both;">
+        <legend> <h3> Inserisci i nuovi dati </h3> </legend>
+        <?php echo $this->modificaForm->populate($this->macchina);?>
+    </fieldset>
+
 <?php endif; ?>
 
 <?php if ($this->operazione === "statistiche"): ?>

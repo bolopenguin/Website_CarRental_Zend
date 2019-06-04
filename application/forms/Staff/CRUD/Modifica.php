@@ -29,7 +29,7 @@ class Application_Form_Staff_Crud_Modifica extends App_Form_Abstract {
             'validators' => array(
                 array('StringLength', true, array(3, 20))
             ),
-            'required' => false,
+            'required' => true,
             'label' => 'Marca',
             'decorators' => $this->elementDecorators,
         ));

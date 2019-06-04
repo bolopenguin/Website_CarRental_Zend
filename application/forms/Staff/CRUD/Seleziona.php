@@ -11,10 +11,11 @@ class Application_Form_Staff_Crud_Seleziona extends App_Form_Abstract {
         $this->setAction('');
         $this->setAttrib('enctype', 'multipart/form-data');
 
-        $this->addElement('radio', 'targa', array(
+        $this->addElement('select', 'targa', array(
             'required' => true,
             'decorators' => $this->elementDecorators,
             'multiOptions' => $this->buildMultiOptions(),
+            'label' => "Targa",
         ));
         
         

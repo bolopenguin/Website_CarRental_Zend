@@ -12,14 +12,10 @@ class Application_Form_Staff_Crud_Elimina extends App_Form_Abstract {
         $this->setAttrib('enctype', 'multipart/form-data');
 
         $this->addElement('select', 'targa', array(
-            'filters' => array('StringTrim', 'StringToUpper'),
-            'validators' => array(
-                array('StringLength', true, array(7, 7))
-            ),
             'required' => true,
-            'label' => 'Targa',
             'decorators' => $this->elementDecorators,
             'multiOptions' => $this->buildMultiOptions(),
+            'label' => "Targa",
         ));
         
         
