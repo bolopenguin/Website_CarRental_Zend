@@ -33,7 +33,7 @@
     $this->url(array(
         'controller' => 'staff',
         'action' => 'staffarea',
-        'operazione' => 'modifica',
+        'operazione' => 'seleziona',
             ), 'default', true
     );
     ?>" title="Modifica">     
@@ -81,14 +81,19 @@
         <?php endforeach ?>
     </div>
 
-    <fieldset style="float: left">
+    <fieldset style="width: 300px; clear:both;">
         <legend> <h3> Scegli la targa dell'auto da eliminare </h3> </legend>
         <?php echo $this->eliminaForm; ?>
     </fieldset>
+
+<?php endif; ?>
+
+<?php if ($this->operazione === "seleziona"): ?>
+        <?php echo $this->selezionaForm; ?>
 <?php endif; ?>
 
 <?php if ($this->operazione === "modifica"): ?>
-
+    <?php echo $this->modificaForm->populate($this->macchina);?>
 <?php endif; ?>
 
 <?php if ($this->operazione === "statistiche"): ?>

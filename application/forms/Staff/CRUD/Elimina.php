@@ -2,13 +2,16 @@
 
 class Application_Form_Staff_Crud_Elimina extends App_Form_Abstract {
     
+    protected $_catalogModel;
+    
     public function init() {
+        $this->_catalogModel = new Application_Model_Catalog;
         $this->setMethod('post');
         $this->setName('deleteAuto');
         $this->setAction('');
         $this->setAttrib('enctype', 'multipart/form-data');
 
-        $this->addElement('text', 'targa', array(
+        $this->addElement('select', 'targa', array(
             'filters' => array('StringTrim', 'StringToUpper'),
             'validators' => array(
                 array('StringLength', true, array(7, 7))
@@ -16,10 +19,11 @@ class Application_Form_Staff_Crud_Elimina extends App_Form_Abstract {
             'required' => true,
             'label' => 'Targa',
             'decorators' => $this->elementDecorators,
+            'multiOptions' => $this->buildMultiOptions(),
         ));
         
         
-        $this->addElement('submit', 'add', array(
+        $this->addElement('submit', 'delete', array(
             'label' => 'Elimina',
             'decorators' => $this->buttonDecorators,
         ));
@@ -30,6 +34,16 @@ class Application_Form_Staff_Crud_Elimina extends App_Form_Abstract {
             array('Description', array('placement' => 'prepend', 'class' => 'formerror')),
             'Form'
         ));
+    }
+    
+    protected function buildMultiOptions()
+    {
+        $vetture = $this->_catalogModel->getAllAuto(null);
+        $return = array();
+        foreach ($vetture as $row) {
+            $return[$row['targa']] = $row['targa'];
+        }
+        return $return;
     }
 
 }
