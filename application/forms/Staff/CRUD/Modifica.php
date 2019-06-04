@@ -19,6 +19,7 @@ class Application_Form_Staff_Crud_Modifica extends App_Form_Abstract {
                 array('StringLength', true, array(7, 7))
             ),
             'required' => true,
+            'readonly' => true,
             'label' => 'Targa',
             'decorators' => $this->elementDecorators,
             'value' => $_targa,
@@ -28,7 +29,7 @@ class Application_Form_Staff_Crud_Modifica extends App_Form_Abstract {
             'validators' => array(
                 array('StringLength', true, array(3, 20))
             ),
-            'required' => true,
+            'required' => false,
             'label' => 'Marca',
             'decorators' => $this->elementDecorators,
         ));
@@ -38,7 +39,7 @@ class Application_Form_Staff_Crud_Modifica extends App_Form_Abstract {
             'validators' => array(
                 array('StringLength', true, array(3, 20))
             ),
-            'required' => true,
+            'required' => false,
             'label' => 'Modello',
             'decorators' => $this->elementDecorators,
         ));
@@ -48,7 +49,7 @@ class Application_Form_Staff_Crud_Modifica extends App_Form_Abstract {
             'validators' => array(
                 array('StringLength', true, array(3, 20))
             ),
-            'required' => true,
+            'required' => false,
             'label' => 'Allestimento',
             'decorators' => $this->elementDecorators,
         ));
@@ -66,7 +67,7 @@ class Application_Form_Staff_Crud_Modifica extends App_Form_Abstract {
         
         $this->addElement('text', 'prezzo_giornaliero', array(
             'label' => 'Prezzo Giornaliero',
-            'required' => true,
+            'required' => false,
             'filters' => array('LocalizedToNormalized'),
             'validators' => array(array('Float', true, array('locale' => 'en_US'))),
             'decorators' => $this->elementDecorators,
@@ -76,7 +77,7 @@ class Application_Form_Staff_Crud_Modifica extends App_Form_Abstract {
             'validators' => array(
                 array('StringLength', true, array(1, 1))
             ),
-            'required' => true,
+            'required' => false,
             'label' => 'Numero Posti',
             'decorators' => $this->elementDecorators,
         ));

@@ -56,5 +56,10 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract
         return $this->fetchRow($select);
         
     }
+    
+    public function modifyAuto($values){
+        $this->deleteAuto($values);
+        $this->addAuto($values);
+    }
         
     }
