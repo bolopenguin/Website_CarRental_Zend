@@ -87,9 +87,9 @@ class PublicController extends Zend_Controller_Action {
         $this->render($page);
     }
     
-//    public function loginAction() {
-//        
-//    }
+    public function loginAction() {
+        
+    }
     
     public function authenticateAction() {
         $request = $this->getRequest();

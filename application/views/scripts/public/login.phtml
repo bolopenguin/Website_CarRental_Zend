@@ -16,8 +16,12 @@ $(function()
 
 <?php $this->headScript()->captureEnd() ?>
 
-<div class="static">
- <h3>login</h3>
- <p>Utilizza questa form per l'autenticazione</p>
- <?=$this->loginForm; ?>
+<div class="static" style="text-align: center" >
+    <?php if( $this->authInfo('role') === 'unregistered'): ?>
+        <h3>LOGIN</h3>
+        <p> Inserisci le tue credenziali per poter accedere</p>
+        <?= $this->loginForm; ?>
+    <?php else: ?>
+        <h3>Hai già fatto il login</h3>
+    <?php endif;?>
 </div>
