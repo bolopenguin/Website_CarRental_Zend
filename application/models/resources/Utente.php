@@ -16,4 +16,7 @@ class Application_Resource_Utente extends Zend_Db_Table_Abstract {
         //fetchRow tira fuori la prima righa che matcha con quello che gli dico, in questo caso usrName
     }
 
+    public function addUtente($values){
+        $this->insert($values);
+    }
 }

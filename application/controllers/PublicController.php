@@ -4,9 +4,11 @@ class PublicController extends Zend_Controller_Action {
     
     protected $_questionsModel;
     protected $_catalogModel;
+    protected $_userModel;
     protected $_logger;
-    protected $_form;
-    protected $_form1;
+    protected $_formLogin;
+    protected $_formFilter;
+    protected $_formRegister;
     protected $_authService;
     // Nel controller sono definite le azioni che a seconda dei parametri del model prendono i dati e li iniettano nella vista
     
@@ -16,8 +18,10 @@ class PublicController extends Zend_Controller_Action {
         $this->_logger = Zend_Registry::get('log');
         $this->_catalogModel = new Application_Model_Catalog();
         $this->_questionsModel = new Application_Model_Questions();
+        $this->_userModel = new Application_Model_User();
         $this->view->filterForm = $this->getAutoForm();
         $this->view->loginForm = $this->getLoginForm();
+        $this->view->registerForm = $this->getRegisterForm();
         $this->_authService = new Application_Service_Auth();
     }
     
@@ -28,15 +32,15 @@ class PublicController extends Zend_Controller_Action {
     private function getAutoForm()
     {
             $urlHelper = $this->_helper->getHelper('url');
-            $this->_form1 = new Application_Form_Public_Auto_Filter();
-            $this->_form1->setAction($urlHelper->url(array(
+            $this->_formFilter = new Application_Form_Public_Auto_Filter();
+            $this->_formFilter->setAction($urlHelper->url(array(
                             'controller' => 'public',
                             'action' => 'leauto',
                             'search' => '1',
                             ),
                             'default'
                             ));
-            return $this->_form1;
+            return $this->_formFilter;
     }
     
     public function leautoAction(){
@@ -54,7 +58,7 @@ class PublicController extends Zend_Controller_Action {
             $this->_helper->redirector('leauto');
         }
         
-        $form=$this->_form1;
+        $form=$this->_formFilter;
         
         if (!$form->isValid($_POST)) {
             $form->setDescription('Attenzione: alcuni dati inseriti sono errati.');
@@ -89,14 +93,14 @@ class PublicController extends Zend_Controller_Action {
     
     public function loginAction() {
         
-    }
+   }
     
     public function authenticateAction() {
         $request = $this->getRequest();
         if (!$request->isPost()) {
             return $this->_helper->redirector('login');
         }
-        $form = $this->_form;
+        $form = $this->_formLogin;
         if (!$form->isValid($request->getPost())) {
             $form->setDescription('Attenzione: alcuni dati inseriti sono errati.');
             return $this->render('login');
@@ -111,12 +115,12 @@ class PublicController extends Zend_Controller_Action {
 
     private function getLoginForm() {
         $urlHelper = $this->_helper->getHelper('url');
-        $this->_form = new Application_Form_Public_Auth_Login();
-        $this->_form->setAction($urlHelper->url(array(
+        $this->_formLogin = new Application_Form_Public_Auth_Login();
+        $this->_formLogin->setAction($urlHelper->url(array(
                     'controller' => 'public',
                     'action' => 'authenticate'), 'default'
         ));
-        return $this->_form;
+        return $this->_formLogin;
     }
     
     public function validateloginAction() {
@@ -130,4 +134,28 @@ class PublicController extends Zend_Controller_Action {
         }
     }
 
+    public function registerAction() {
+        $request = $this->getRequest();
+        if (!$request->isPost()) {
+            return $this->_helper->redirector('login');
+        }
+        $form = $this->_formRegister;
+        if (!$form->isValid($request->getPost())) {
+            $form->setDescription('Attenzione: alcuni dati inseriti sono errati.');
+            return $this->render('login');
+        }
+        $values = $form->getValues();
+        $this->_userModel->addUtente($values);
+        $this->_helper->redirector('login');
+    }
+
+    private function getRegisterForm() {
+        $urlHelper = $this->_helper->getHelper('url');
+        $this->_formRegister = new Application_Form_Public_Auth_Register();
+        $this->_formRegister->setAction($urlHelper->url(array(
+                    'controller' => 'public',
+                    'action' => 'register'), 'default'
+        ));
+        return $this->_formRegister;
+    }
 }

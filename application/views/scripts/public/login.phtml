@@ -17,11 +17,18 @@ $(function()
 <?php $this->headScript()->captureEnd() ?>
 
 <div class="static" style="text-align: center" >
-    <?php if( $this->authInfo('role') === 'unregistered'): ?>
+    <?php if($this->authInfo('role')==='unregistered'): ?>
         <h3>LOGIN</h3>
         <p> Inserisci le tue credenziali per poter accedere</p>
         <?= $this->loginForm; ?>
+        <br>
+        <h3>Registrati</h3>
+        <p>Utilizza questa form per la registrazione</p>
+        <?=$this->registerForm; ?>
+
     <?php else: ?>
+
         <h3>Hai già fatto il login</h3>
-    <?php endif;?>
+
+    <?php endif; ?>
 </div>
