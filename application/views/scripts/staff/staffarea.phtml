@@ -104,6 +104,26 @@
 <?php endif; ?>
 
 <?php if ($this->operazione === "statistiche"): ?>
+    <fieldset style="width: 300px; clear:both;">
+        <legend> <h3> Seleziona il mese </h3> </legend>
+        <?php echo $this->statisticheForm; ?>
+    </fieldset>
 
+
+        <div style="float: right; margin-right: 150px">
+            <table style="background-color:#eee859; border-collapse:collapse; width: 400px; " border="">
+                <tr><th style="width: 200px"> Username </th> <th style="width: 200px"> Targa </th> </tr>
+            </table>
+            <?php foreach ($this->stats as $prenotazione) : ?>
+                <table style="background-color:#eee859; border-collapse:collapse; width: 400px; " border="">
+                    <tbody>
+                        <tr>
+                            <td style="width: 200px"><?php echo '' . $prenotazione->username  . '' ?></td>
+                            <td style="width: 200px"><?php echo'' . $prenotazione->targa . '' ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+            <?php endforeach ?>
+        </div>
 <?php endif; ?>
 

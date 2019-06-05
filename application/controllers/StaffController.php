@@ -7,13 +7,17 @@ class StaffController extends Zend_Controller_Action {
     protected $_formDelete;
     protected $_formSelect;
     protected $_formModify;
+    protected $_formStast;
     protected $_catalogModel;
+    protected $_statsModel;
 
     public function init() {
         $this->_catalogModel = new Application_Model_Catalog;
+        $this->_statsModel = new Application_Model_Stats;
         $this->_helper->layout->setLayout('layout');
         $this->_authService = new Application_Service_Auth();
         $this->view->inserisciForm = $this->addAutoForm();
+        $this->view->statisticheForm = $this->statsAutoForm();
         $this->view->eliminaForm = $this->deleteAutoForm();
         $this->view->selezionaForm = $this->selectAutoForm();
         $this->view->modificaForm = $this->modifyAutoForm();
@@ -27,10 +31,12 @@ class StaffController extends Zend_Controller_Action {
     public function staffareaAction(){
         $param = $this->_getParam('operazione', 'noOp');
         $targa = $this->_getParam('macchina', null);
+        $stats = $this->_getParam('stats', null);
         if($param === 'elimina'){
             $vetture = $this->_catalogModel->getAllAuto(null);
             $this->view->assign(array('auto' => $vetture));
         }
+        $this->view->assign(array('operazione' => $param, 'stats' => $stats));
         $this->view->assign(array('operazione' => $param, 'macchina' => $targa));
         $this->view->headTitle('Area Riservata');
     }
@@ -152,5 +158,33 @@ class StaffController extends Zend_Controller_Action {
     public function logoutAction() {
         $this->_authService->clear();
         return $this->_helper->redirector('index', 'public');
+    }
+    
+    public function statsautoAction() {
+		if (!$this->getRequest()->isPost()) {
+			$this->_helper->redirector('staffarea');
+		}
+		$form=$this->_formStats;
+		if (!$form->isValid($_POST)) {
+			$form->setDescription('Attenzione: alcuni dati inseriti sono errati.');
+                        $this->view->assign(array('operazione' => 'statistiche'));
+                        return $this->render('staffarea');	
+		}
+		$values = $form->getValues();
+		$mese = $this->_statsModel->getStatsMonth($values['mese'], date("Y"));  //mese è il valore che passa la form
+                $this->_helper->redirector('staffarea', 'staff', '', array('operazione' => 'statistiche', 'stats' => $stats['']));
+	}
+
+    private function statsAutoForm()
+    {
+            $urlHelper = $this->_helper->getHelper('url');
+            $this->_formStats = new Application_Form_Staff_Statistiche_Stats();
+            $this->_formStats->setAction($urlHelper->url(array(
+                            'controller' => 'staff',
+                            'action' => 'statsauto',
+                            ),
+                            'default'
+                            ));
+            return $this->_formStats;
     }
 }

@@ -87,9 +87,9 @@ class PublicController extends Zend_Controller_Action {
         $this->render($page);
     }
     
-    public function loginAction() {
-        
-    }
+//    public function loginAction() {
+//        
+//    }
     
     public function authenticateAction() {
         $request = $this->getRequest();
@@ -117,6 +117,17 @@ class PublicController extends Zend_Controller_Action {
                     'action' => 'authenticate'), 'default'
         ));
         return $this->_form;
+    }
+    
+    public function validateloginAction() {
+        $this->_helper->getHelper('layout')->disableLayout();
+        $this->_helper->viewRenderer->setNoRender();
+
+        $loginform = new Application_Form_Public_Auth_Login();
+        $response = $loginform->processAjax($_POST);
+        if ($response !== null) {
+            $this->getResponse()->setHeader('Content-type', 'application/json')->setBody($response);
+        }
     }
 
 }
