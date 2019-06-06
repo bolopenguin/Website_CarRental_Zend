@@ -36,11 +36,18 @@ class Application_Resource_Prenotazione extends Zend_Db_Table_Abstract
                      
         $start = date('Y-m-d',strtotime($inizio));
         $end = date('Y-m-d',strtotime($fine));
-        $select = $this-> select('targa') -> where('data_fine > ?', $start )
-                                   -> where('data_inizio < ?', $end);
+        $select = $this-> select('targa') 
+                -> where('data_fine > ?', $start )
+                -> where('data_inizio < ?', $end);
                                        
         return $this->fetchAll($select);
     }
     
+    public function getPrenotazioni($username){
+        $select = $this-> select() 
+                -> where('username =?', $username);
+                                       
+        return $this->fetchAll($select);
+    }
    
 }

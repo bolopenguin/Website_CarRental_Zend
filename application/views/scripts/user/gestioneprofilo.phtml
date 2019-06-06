@@ -22,6 +22,25 @@
     </table>
 </div>                
 <h3>Modifica Profilo</h3> 
+
 <div>
     <?php echo $this->modificaForm->populate($this->utente->username) ?>
 </div>
+
+<div class="mainGestioneUtente">
+    <table id="table1" border>
+        <caption id="caption1" style="font-size: 18px"> <b>Le tue Prenotazioni</b> </caption>
+            <tr>
+                <th> Targa </th> 
+                <th> Data Inizio </th>
+                <th> Data Fine </th>
+            </tr>
+            <?php foreach ($this->prenotazioni as $prenotazione) : ?>
+            <tr>
+                <td><?php echo $prenotazione->targa . ' '?></td>
+                <td><?php echo $prenotazione->data_inizio . ' '?> </td>
+                <td> <?php echo $prenotazione->data_fine . ' '?> </td>
+            </tr>        
+            <?php endforeach ?>
+    </table>
+</div>  

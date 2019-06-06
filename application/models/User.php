@@ -17,4 +17,7 @@ class Application_Model_User extends App_Model_Abstract {
         return $this->getResource('Utente')->modifyUser($values);
     }
 
+    public function getPrenotazioni($values){
+        return $this->getResource('Prenotazione')->getPrenotazioni($values);
+    }
 }

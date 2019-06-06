@@ -83,8 +83,9 @@ class UserController extends Zend_Controller_Action {
     public function gestioneprofiloAction(){
         $username = $this->_getParam('username');
         $utente = $this->_userModel->getUserByName($username);
-        $this->view->assign(array('utente' => $utente));
-        
+        $prenotazioni = $this->_userModel->getPrenotazioni($username);
+        $this->view->assign(array('prenotazioni' => $prenotazioni));
+        $this->view->assign(array('utente' => $utente));      
     }
     
     public function modificaAction(){
