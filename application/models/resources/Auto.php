@@ -40,7 +40,18 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract
         }
         
     public function addAuto($values){
-        $this->insert($values);
+        
+        $select = $this->select()
+                ->where('targa = ?', $values['targa']);
+        
+        $result = $this->fetchRow($select);
+        
+        if ($result === null) {
+            $this->insert($values);
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public function deleteAuto($values){

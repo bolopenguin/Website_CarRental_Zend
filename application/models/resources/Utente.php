@@ -11,13 +11,23 @@ class Application_Resource_Utente extends Zend_Db_Table_Abstract {
     }
 
     public function getUserByName($usrName) {
-        //$usrName è lo username che ci viene fornito dalla form
-        return $this->fetchRow($this->select()->where('username = ?', $usrName));
-        //fetchRow tira fuori la prima righa che matcha con quello che gli dico, in questo caso usrName
+        $select = $this->select()
+                ->where('username = ?', $usrName);
+        return $this->fetchRow($select);
     }
 
     public function addUtente($values){
-        $this->insert($values);
+        $select = $this->select()
+                ->where('username = ?', $values['username']);
+        
+        $result = $this->fetchRow($select);
+        
+        if ($result === null) {
+            $this->insert($values);
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public function modifyUser($values){

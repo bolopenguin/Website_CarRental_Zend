@@ -63,8 +63,20 @@ class StaffController extends Zend_Controller_Action {
                         return $this->render('staffarea');	
 		}
 		$values = $form->getValues();
-		$this->_catalogModel->addAuto($values);
-		$this->_helper->redirector('staffarea');
+		$esito = $this->_catalogModel->addAuto($values);
+                
+                if($esito){
+			$form->setDescription('La macchina è stata inserita corretamente');
+                        $this->view->assign(array('operazione' => 'inserisci'));
+                        return $this->render('staffarea');	
+                }
+                else{
+                        $form->setDescription('Attenzione: esiste già una macchina con quella targa');
+                        $this->view->assign(array('operazione' => 'inserisci'));
+                        return $this->render('staffarea');
+                }
+                
+
 	}
 
     private function addAutoForm()

@@ -145,8 +145,16 @@ class PublicController extends Zend_Controller_Action {
             return $this->render('login');
         }
         $values = $form->getValues();
-        $this->_userModel->addUtente($values);
-        $this->_helper->redirector('login');
+        $esito = $this->_userModel->addUtente($values);
+        
+        if($esito){
+                $form->setDescription('L\'utente è stato registrato corretamente');
+                return $this->render('login');
+        }
+        else{
+                $form->setDescription('Attenzione: esiste già un utente con quell\'username');
+                return $this->render('login');
+        }
     }
 
     private function getRegisterForm() {
