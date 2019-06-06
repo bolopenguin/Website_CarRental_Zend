@@ -29,16 +29,27 @@ class StaffController extends Zend_Controller_Action {
     }
     
     public function staffareaAction(){
+        $this->view->headTitle('Area Riservata');
         $param = $this->_getParam('operazione', 'noOp');
-        $targa = $this->_getParam('macchina', null);
-        $stats = $this->_getParam('stats', null);
         if($param === 'elimina'){
             $vetture = $this->_catalogModel->getAllAuto(null);
             $this->view->assign(array('auto' => $vetture));
         }
-        $this->view->assign(array('operazione' => $param, 'stats' => $stats));
-        $this->view->assign(array('operazione' => $param, 'macchina' => $targa));
-        $this->view->headTitle('Area Riservata');
+        if($param === 'modifica'){
+            $targa = $this->_getParam('macchina', null);
+            $this->view->assign(array('operazione' => $param, 'macchina' => $targa));
+        }
+        if($param === 'statistiche'){
+            $mese = $this->_getParam('mese', 01);
+            $prenotazioni = $this->_statsModel->getStatsMonth($mese);
+            $this->view->assign(array('operazione' => $param, 'prenotazioni' => $prenotazioni));
+        }
+        if($param === 'seleziona'){
+            $vetture = $this->_catalogModel->getAllAuto(null);
+            $this->view->assign(array('operazione' => $param, 'auto' => $vetture));
+        }
+        
+        $this->view->assign(array('operazione' => $param));
     }
     
     public function addautoAction()	{
@@ -170,9 +181,8 @@ class StaffController extends Zend_Controller_Action {
                         $this->view->assign(array('operazione' => 'statistiche'));
                         return $this->render('staffarea');	
 		}
-		$values = $form->getValues();
-		$mese = $this->_statsModel->getStatsMonth($values['mese'], date("Y"));  //mese è il valore che passa la form
-                $this->_helper->redirector('staffarea', 'staff', '', array('operazione' => 'statistiche', 'stats' => $stats['']));
+		$values = $form->getValues(); //mese è il valore che passa la form
+                $this->_helper->redirector('staffarea', 'staff', '', array('operazione' => 'statistiche', 'mese' => $values));
 	}
 
     private function statsAutoForm()

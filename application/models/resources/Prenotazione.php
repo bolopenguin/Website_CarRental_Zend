@@ -10,12 +10,21 @@ class Application_Resource_Prenotazione extends Zend_Db_Table_Abstract
     {            
     }
     
-    public function getStatsMonth($mese, $anno){     
+    public function getStatsMonth($mese){
+        $anno = date('Y');
         $data_inizio= date("Y-m-d", strtotime($anno."-".$mese."-01"));
-        $data_fine= date("Y-m-d", strtotime($anno."-".$mese."31"));
-
-        $select = $this->select('targa')
-                ->where('data_inizio =?', "".$anno."-".$mese."23");
+        $data_fine= date("Y-m-d", strtotime($anno."-".$mese."-31"));
+//        $select = $this->select()
+//                //->setIntegrityCheck(false)
+//                ->where('data_inizio >=?', $data_inizio)
+//                ->where('data_inizio <=?', $data_fine);
+        
+        $select = $this->select()
+                ->setIntegrityCheck(false)
+                ->from('auto')
+                ->joinLeft(array('prenota'=>'prenotazione'),'auto.targa = prenota.targa')
+                ->where('prenota.data_inizio >=?', $data_inizio)
+                ->where('prenota.data_inizio <=?', $data_fine);  
         
         return $this->fetchAll($select);       
     }

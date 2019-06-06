@@ -19,6 +19,7 @@ class Application_Form_Staff_Statistiche_Stats extends App_Form_Abstract {
                 '02' => 'Febbraio',
                 '03' => 'Marzo',
                 '05' => 'Maggio',
+                '06' => 'Giugno',
             ),
             'label' => "Mese",
         ));

@@ -89,6 +89,22 @@
 <?php endif; ?>
 
 <?php if ($this->operazione === "seleziona"): ?>
+    <div style="float: right; margin-right: 150px">
+        <table style="background-color:#eee859; border-collapse:collapse; width: 400px; " border="">
+            <tr><th style="width: 240px"> Modello </th> <th style="width: 160px"> Targa </th> </tr>
+        </table>
+        <?php foreach ($this->auto as $auto) : ?>
+            <table style="background-color:#eee859; border-collapse:collapse; width: 400px; " border="">
+                <tbody>
+                    <tr>
+                        <td style="width: 240px"><?php echo '' . $auto->marca . " " . $auto->modello . '' ?></td>
+                        <td style="width: 160px"><?php echo'' . $auto->targa . '' ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        <?php endforeach ?>
+    </div>
+
     <fieldset style="width: 300px; clear:both;">
         <legend> <h3> Seleziona la targa dell'auto da modificare </h3> </legend>
         <?php echo $this->selezionaForm; ?>
@@ -96,6 +112,7 @@
 <?php endif; ?>
 
 <?php if ($this->operazione === "modifica"): ?>
+
     <fieldset style="width: 300px; clear:both;">
         <legend> <h3> Inserisci i nuovi dati </h3> </legend>
         <?php echo $this->modificaForm->populate($this->macchina);?>
@@ -111,19 +128,28 @@
 
 
         <div style="float: right; margin-right: 150px">
-            <table style="background-color:#eee859; border-collapse:collapse; width: 400px; " border="">
-                <tr><th style="width: 200px"> Username </th> <th style="width: 200px"> Targa </th> </tr>
+            <table style="background-color:#eee859; border-collapse:collapse; width: 800px; " border="">
+                <tr>
+                    <th style="width: 200px"> Username </th> 
+                    <th style="width: 200px"> Targa </th> 
+                    <th style="width: 200px"> Marca </th> 
+                    <th style="width: 200px"> Modello </th> 
+                </tr>
             </table>
-            <?php foreach ($this->stats as $prenotazione) : ?>
-                <table style="background-color:#eee859; border-collapse:collapse; width: 400px; " border="">
+            
+            <?php foreach ($this->prenotazioni as $prenotazione) : ?>
+                <table style="background-color:#eee859; border-collapse:collapse; width: 800px; " border="">
                     <tbody>
                         <tr>
                             <td style="width: 200px"><?php echo '' . $prenotazione->username  . '' ?></td>
                             <td style="width: 200px"><?php echo'' . $prenotazione->targa . '' ?></td>
+                            <td style="width: 200px"><?php echo'' . $prenotazione->marca . '' ?></td>
+                            <td style="width: 200px"><?php echo'' . $prenotazione->modello . '' ?></td>
                         </tr>
                     </tbody>
                 </table>
             <?php endforeach ?>
+            
         </div>
 <?php endif; ?>
 

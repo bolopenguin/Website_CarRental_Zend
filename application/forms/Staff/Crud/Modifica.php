@@ -101,8 +101,7 @@ class Application_Form_Staff_Crud_Modifica extends App_Form_Abstract {
         $macchina = $this->_catalogModel->getAuto($targa);
         
         $this->targa->setValue($macchina['targa']);
-        $this->marca->setValue($macchina['marca']);   
-        $this->targa->setValue($macchina['targa']);  
+        $this->marca->setValue($macchina['marca']);  
         $this->modello->setValue($macchina['modello']);
         $this->allestimento->setValue($macchina['allestimento']);
         $this->foto->setValue($macchina['foto']);
