@@ -27,4 +27,16 @@ class Application_Model_Catalog extends App_Model_Abstract {
    public function modifyAuto($values){
        return $this->getResource('Auto')->modifyAuto($values);
    }
+   
+      public function getUserFilteredAuto($values,$tmp,$paged){
+       return $this->getResource('Auto')->getUserFilteredAuto($values,$tmp,$paged);
+   }
+   
+   public function getAvaiableAuto($tmp,$paged){
+        return $this->getResource('Auto')->getAvaiableAuto($tmp,$paged);
+    }
+    
+    public function getNotAvaiableAuto($period){                
+        return $this->getResource('Prenotazione')->getNotAvaiableAuto($period);
+    }
 }

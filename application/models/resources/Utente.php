@@ -19,4 +19,10 @@ class Application_Resource_Utente extends Zend_Db_Table_Abstract {
     public function addUtente($values){
         $this->insert($values);
     }
+    
+    public function modifyUser($values){
+        $username=$values['username'];
+        $this->delete(array('username = ?' => $username));
+        $this->insert($values);
+    }
 }

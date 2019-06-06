@@ -12,5 +12,9 @@ class Application_Model_User extends App_Model_Abstract {
     public function addUtente($values) {
         return $this->getResource('Utente')->addUtente($values);
     }
+    
+    public function modifyUser($values){
+        return $this->getResource('Utente')->modifyUser($values);
+    }
 
 }

@@ -1,60 +1,27 @@
-   <div class="main1">
-                <table id="table1" border>
-                    <caption id="caption1" style="font-size: 18px"> <b>Il tuo profilo</b> </caption>
-                                     
-                    <tr>
-                        <th> Username </th> 
-                        <th> Nome </th>
-                        <th> Cognome </th>
-                        <th> Cttà </th>
-                        <th> Data di nascita</th>
-                        <th> Occupazione</th>
-                    </tr>
-                    <tr>
-                        <td>mario_rossi89</td>
-                        <td>Mario </td>
-                        <td> Rossi </td>
-                        <td> Roma </td>
-                        <td>03/12/1989</td>
-                        <td>Professore</td>
-                    </tr>                  
-                </table>
-                </div>                
-        
-                <h3>Modifica Profilo</h3>    
-               <form name="modificaprofilo" id="form1" >
-                    <label>Username
-                        <input type="text" name="nome" disabled value="mario_rossi89">
-                    </label>            
-                    <label>Nome
-                        <input  type="text" maxlength="20" name="nome" autofocus>
-                    </label>
-                    
-                    <label>Cognome
-                        <input type="text" maxlength="20" name="cognome">
-                    </label>
-                    
-                    <label>Città
-                        <input type="text" maxlength="20" name="città">
-                    </label>
-                    
-                    <label>Data di nascita
-                        <input type="date" name="data" min="1929-01-01" max="2001-01-01">
-                    </label>                    
-                        <input type="submit" value="Conferma">
-                        <input type="reset" value="Azzera">
-                    
-                </form>                
-       
-                <form name="modificapws" id="form2">
-                    <label>Password Corrente
-                        <input type="password" >
-                    </label>
-                    <label>Nuova Password
-                        <input type="password" >
-                    </label>
-                    <label>Conferma Password
-                        <input type="password" >
-                    </label>
-                    <input type="submit">
-                </form>
+<div class="mainGestioneUtente">
+    <table id="table1" border>
+        <caption id="caption1" style="font-size: 18px"> <b>Il tuo profilo</b> </caption>
+            <tr>
+                <th> Username </th> 
+                <th> Nome </th>
+                <th> Cognome </th>
+                <th> Città </th>
+                <th> Data di nascita</th>
+                <th> Occupazione</th>
+                <th> Password</th>
+            </tr>
+            <tr>
+                <td><?php echo $this->utente->username . ' '?></td>
+                <td><?php echo $this->utente->nome . ' '?> </td>
+                <td> <?php echo $this->utente->cognome . ' '?> </td>
+                <td> <?php echo $this->utente->residenza . ' '?> </td>
+                <td><?php echo $this->utente->data_nascita . ' '?></td>
+                <td><?php echo $this->utente->occupazione . ' '?></td>
+                <td><?php echo $this->utente->password . ' '?></td>
+            </tr>                  
+    </table>
+</div>                
+<h3>Modifica Profilo</h3> 
+<div>
+    <?php echo $this->modificaForm->populate($this->utente->username) ?>
+</div>

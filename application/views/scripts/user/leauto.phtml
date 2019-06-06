@@ -1,0 +1,65 @@
+<?php $this->headScript() -> captureStart() ?>
+function getConfirm(){
+var question = confirm("Vuoi confermare la tua prenotazione?");
+if(question==true) window.alert("Prenotazione Confermata. Grazie!")
+return true;
+} else{
+    window.alert("Annulato.");
+    return false;
+    }
+
+<?php $this->headScript() -> captureEnd() ?>
+
+
+<div class="catalog">
+    <div class="filters">
+        <hr style="width: 1098px; margin-left: -16px; color: white">
+        <?php echo $this->filterForm ?>
+    </div>   
+    <h2 style="text-align:center; color: #333;">
+        LA NOSTRA FLOTTA
+    </h2>
+    <?php if($this->empty==1) :?>
+        <?php echo 'INSERISCI IL PERIODO DI PRENOTAZIONE PER VEDERE LE AUTO DISPONIBILI.'
+        . 'È anche possibile migliorare la ricerca inserenzo le tue preferenze di costi e numuero minimo di posti desiderato';
+        ?>
+    <?php endif; ?>
+    <?php foreach ($this->auto as $auto) : ?>
+        <div class="prod">
+            
+            <hr class="barracatalogo">
+            <div class="contenitore">
+               
+        ˙        <div style="width: auto; float: left; margin-right: 10px;">
+                    <div style="border: 1px solid black; margin:10px;">
+                        <?php echo $this->autoImg($auto->foto, array('class' => 'imagefrm'))?>
+                    </div>
+                </div>
+         <h2 style="margin-left: 15px"> <?php echo '' . $auto->marca . " " . $auto->modello ?> </h2>
+                <div style="width: auto;">
+                    <div class="testoauto">
+                        <ul>
+                            <li>  <?php echo'Allestimento: ' . $auto->allestimento  ?> </li>
+                            <li>  <?php echo'Numero Posti: ' . $auto->numero_posti  ?> </li>
+                            <li>  <?php echo'Targa: ' . $auto->targa . '' ?> </li>                 
+                        </ul>
+                        
+                    </div>
+                </div>
+         <a>
+             <div class="borderprezzo">
+                 <form>
+                     <input type="button" onclick="window.alert" value="Noleggia a soli  <?php echo $auto->prezzo_giornaliero . '€' ?>"> 
+                 </form>
+            </div>
+         </a>
+            </div>
+        </div>
+    <?php endforeach ?>
+
+    <?php
+    if ($this->auto instanceof Zend_Paginator) {
+        echo $this->paginationControl($this->auto, 'Sliding', 'public/_paginator.phtml');
+    }
+    ?>
+</div>

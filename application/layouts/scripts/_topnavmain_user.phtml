@@ -35,7 +35,7 @@
     </a>
 
     <a href="<?= $this->url(array(
-                        'controller' => 'public',
+                        'controller' => 'user',
                         'action'     => 'leauto',
         ), 
                         'default',true
@@ -69,6 +69,7 @@
       <a href="<?= $this->url(array(
                         'controller' => 'user',
                         'action'     => 'gestioneprofilo',
+                        'username'   => $this->authInfo('username'),
                                           ), 
                         'default',true
                     ); 
