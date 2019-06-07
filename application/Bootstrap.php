@@ -14,8 +14,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         Zend_Registry::set('log', $logger);
 
         $this->_logger = $logger;
-//    	$this->_logger->info('Bootstrap ' . __METHOD__);
-    	$logger->info('Bootstrap ' . __METHOD__);    }
+    }
 
     protected function _initRequest()
 	// Aggiunge un'istanza di Zend_Controller_Request_Http nel Front_Controller

@@ -131,7 +131,6 @@ class StaffController extends Zend_Controller_Action {
                     return $this->render('staffarea');	
             }
             $values = $form->getValues();
-            $this->_logger->info('la targa vale:'.$values['targa']);
             $this->_helper->redirector('staffarea', 'staff', '', array('operazione' => 'modifica', 'macchina' => $values['targa']));
     }
 

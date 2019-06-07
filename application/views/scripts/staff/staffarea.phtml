@@ -1,8 +1,30 @@
-<h2>
-    Benvenuto nella tua area riservata
-</h2>
+<?php if ($this->authInfo('role') === "admin"): ?>
+    <h2>
+        Area Riservata Amministratore
+    </h2>
+<?php else: ?>
+    <h2>
+        Area Riservata Staff
+    </h2>
+<?php endif; ?>
+
 
 <nav style="width: 500px;float: left; margin-left: 1em">
+       
+    <?php if ($this->authInfo('role') === "admin"): ?>
+        <a href="<?= $this->url(array(
+                            'controller' => 'admin',
+                            'action'     => 'adminarea',
+                                              ), 
+                            'default',true
+                        ); 
+                     ?>" title="Area Riservata Admin">
+            Funzionalità dell'Admin
+        </a>
+    
+        <br>
+    <?php endif; ?>
+    
     <a href="<?=
     $this->url(array(
         'controller' => 'staff',
@@ -50,9 +72,9 @@
             ), 'default', true
     );
     ?>" title="Statistiche">     
-        Statistiche delle prenotazioni
+        Statistiche per Mese
     </a>
-
+   
 </nav>
 
 

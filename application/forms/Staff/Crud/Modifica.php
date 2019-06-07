@@ -10,8 +10,7 @@ class Application_Form_Staff_Crud_Modifica extends App_Form_Abstract {
         $this->setName('addAuto');
         $this->setAction('');
         $this->setAttrib('enctype', 'multipart/form-data');
-        
-        $_targa = $this->view->macchina;
+
 
         $this->addElement('text', 'targa', array(
             'filters' => array('StringTrim', 'StringToUpper'),
@@ -22,7 +21,6 @@ class Application_Form_Staff_Crud_Modifica extends App_Form_Abstract {
             'readonly' => true,
             'label' => 'Targa',
             'decorators' => $this->elementDecorators,
-            'value' => $_targa,
         ));
 
         $this->addElement('text', 'marca', array(

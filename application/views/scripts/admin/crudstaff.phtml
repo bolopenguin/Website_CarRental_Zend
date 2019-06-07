@@ -2,6 +2,10 @@
     Area Riservata Amministratore
 </h2>
 
+<h3>
+    Gestisci gli Utenti Staff
+</h3>
+
 <nav style="width: 500px;float: left; margin-left: 1em">
     <a href="<?=
     $this->url(array(
@@ -62,3 +66,22 @@
     </a>
 
 </nav>
+
+<fieldset style="float: left" >
+    <legend> <h3> Inserisci un nuovo Utente Staff </h3> </legend>
+    <?php echo $this->inserisciForm; ?>
+</fieldset>
+
+<fieldset style="float: left" >
+    <legend> <h3> Modifica o Elimina un Utente Staff </h3> </legend>
+    <?php echo $this->crudForm; ?>
+</fieldset>
+
+<?php if ($this->user !== null): ?>
+
+    <fieldset style="width: 300px; clear:both;">
+        <legend> <h3> Inserisci i nuovi dati </h3> </legend>
+        <?php echo $this->modificaForm->populate($this->user);?>
+    </fieldset>
+
+<?php endif; ?>
