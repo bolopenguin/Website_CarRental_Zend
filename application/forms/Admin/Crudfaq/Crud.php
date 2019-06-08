@@ -1,21 +1,21 @@
 <?php
 
-class Application_Form_Admin_Crudstaff_Crud extends App_Form_Abstract {
+class Application_Form_Admin_Crudfaq_Crud extends App_Form_Abstract {
     
-    protected $_userModel;
+    protected $_faqModel;
     
     public function init() {
-        $this->_userModel = new Application_Model_User;
+        $this->_faqModel = new Application_Model_Questions();
         $this->setMethod('post');
-        $this->setName('crudStaff');
+        $this->setName('crudFaq');
         $this->setAction('');
         $this->setAttrib('enctype', 'multipart/form-data');
 
-        $this->addElement('select', 'username', array(
+        $this->addElement('select', 'id', array(
             'required' => true,
             'decorators' => $this->elementDecorators,
             'multiOptions' => $this->buildMultiOptions(),
-            'label' => "Username",
+            'label' => "ID domanda",
         ));
         
         $this->addElement('radio', 'opzione', array(
@@ -39,10 +39,10 @@ class Application_Form_Admin_Crudstaff_Crud extends App_Form_Abstract {
     
     protected function buildMultiOptions()
     {
-        $utenti = $this->_userModel->getAllStaff();
+        $utenti = $this->_faqModel->getAllFaq();
         $return = array();
         foreach ($utenti as $row) {
-            $return[$row['username']] = $row['username'];
+            $return[$row['id']] = $row['id'];
         }
         return $return;
     }

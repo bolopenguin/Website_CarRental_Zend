@@ -3,7 +3,6 @@
 class Application_Model_User extends App_Model_Abstract {
 
     public function __construct() {
-        
     }
 
     public function getUserByName($info) {
@@ -24,6 +23,10 @@ class Application_Model_User extends App_Model_Abstract {
     
     public function getAllStaff(){
         return $this->getResource('Utente')->getAllStaff();
+    }
+    
+    public function getAllUsers(){
+        return $this->getResource('Utente')->getAllUsers();
     }
     
     public function deleteUser($values){

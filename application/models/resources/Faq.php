@@ -10,10 +10,24 @@ class Application_Resource_Faq extends Zend_Db_Table_Abstract
     {            
     }
     
+    public function getFaqById($id){
+        $select = $this->select()
+            ->where('id =?', $id);
+        
+        return $this->fetchRow($select);
+    }
+    
+    
     public function getAllFaq(){       
         $select = $this->select()->order('id') ;
         return $this->fetchAll($select);       
     }
     
+    public function getIdMax(){
+        $max=$this->fetchRow($this->select('id')
+                             -> order('id DESC'));
+        
+        return $max;
+    }
    
 }

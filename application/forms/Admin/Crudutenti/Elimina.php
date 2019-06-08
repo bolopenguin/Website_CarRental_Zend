@@ -1,31 +1,26 @@
 <?php
 
-class Application_Form_Admin_Crudstaff_Crud extends App_Form_Abstract {
+class Application_Form_Admin_Crudutenti_Elimina extends App_Form_Abstract {
     
     protected $_userModel;
     
     public function init() {
         $this->_userModel = new Application_Model_User;
         $this->setMethod('post');
-        $this->setName('crudStaff');
+        $this->setName('deleteUtente');
         $this->setAction('');
         $this->setAttrib('enctype', 'multipart/form-data');
 
-        $this->addElement('select', 'username', array(
+        $this->addElement('multiselect', 'username', array(
             'required' => true,
             'decorators' => $this->elementDecorators,
             'multiOptions' => $this->buildMultiOptions(),
             'label' => "Username",
         ));
         
-        $this->addElement('radio', 'opzione', array(
-            'required' => true,
-            'decorators' => $this->elementDecorators,
-            'multiOptions' => array('modify' => 'Modifica', 'delete' => 'Elimina'),
-        ));
         
-        $this->addElement('submit', 'prosegui', array(
-            'label' => 'Prosegui',
+        $this->addElement('submit', 'delete', array(
+            'label' => 'Elimina',
             'decorators' => $this->buttonDecorators,
         ));
 
@@ -39,9 +34,9 @@ class Application_Form_Admin_Crudstaff_Crud extends App_Form_Abstract {
     
     protected function buildMultiOptions()
     {
-        $utenti = $this->_userModel->getAllStaff();
+        $vetture = $this->_userModel->getAllUsers();
         $return = array();
-        foreach ($utenti as $row) {
+        foreach ($vetture as $row) {
             $return[$row['username']] = $row['username'];
         }
         return $return;

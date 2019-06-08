@@ -5,14 +5,25 @@ class AdminController extends Zend_Controller_Action {
     protected $_formAdd;
     protected $_formCrud;
     protected $_formModify;
+    protected $_formDeleteUser;
+    protected $_formFaqAdd;
+    protected $_formFaqCrud;
+    protected $_formFaqModify;
+    
+    protected $_statsModel;
     protected $_userModel;
     
     public function init() {
         $this->_userModel = new Application_Model_User;
-        
+        $this->_statsModel = new Application_Model_Stats;
+                
         $this->view->inserisciForm = $this->addStaffForm();
         $this->view->crudForm = $this->crudStaffForm();
         $this->view->modificaForm = $this->modifyStaffForm();
+        $this->view->eliminaUtenteForm = $this->deleteUserForm();
+        $this->view->inserisciFaqForm = $this->addFaqForm();
+        $this->view->crudFaqForm = $this->crudFaqForm();
+        $this->view->modificaFaqForm = $this->modifyFaqForm();
         
         $this->_helper->layout->setLayout('layout');
         $this->_authService = new Application_Service_Auth();
@@ -25,33 +36,86 @@ class AdminController extends Zend_Controller_Action {
         
     }
     
-    public function crudfaqAction(){
+    public function faqAction(){
         
     }
     
-    public function crudstaffAction(){
+    public function addfaqAction() {
+        
+        }
+    
+    private function addFaqForm(){
+            $urlHelper = $this->_helper->getHelper('url');
+            $this->_formFaqAdd = new Application_Form_Admin_Crudfaq_Inserisci();
+            $this->_formFaqAdd->setAction($urlHelper->url(array(
+                            'controller' => 'admin',
+                            'action' => 'addfaq',
+                            ),
+                            'default'
+                            ));
+            return $this->_formFaqAdd;
+    }
+    
+    
+    public function crudfaqAction() {
+        
+    }
+    
+    private function crudFaqForm(){
+            $urlHelper = $this->_helper->getHelper('url');
+            $this->_formFaqCrud = new Application_Form_Admin_Crudfaq_Crud();
+            $this->_formFaqCrud->setAction($urlHelper->url(array(
+                            'controller' => 'admin',
+                            'action' => 'crudfaq',
+                            ),
+                            'default'
+                            ));
+            return $this->_formFaqCrud;
+    }
+    
+    public function modifyfaqAction() {
+    }
+    
+    private function modifyFaqForm(){
+            $urlHelper = $this->_helper->getHelper('url');
+            $this->_formFaqModify = new Application_Form_Admin_Crudfaq_Modifica();
+            $this->_formFaqModify->setAction($urlHelper->url(array(
+                            'controller' => 'admin',
+                            'action' => 'modifyfaq',
+                            ),
+                            'default'
+                            ));
+            return $this->_formFaqModify;    
+    }
+    
+    
+    
+    
+    
+    
+    public function staffAction(){
         $user = $this->_getParam('user', null);
         $this->view->assign(array('user' => $user));
     }
     
     public function addstaffAction() {
 		if (!$this->getRequest()->isPost()) {
-			$this->_helper->redirector('crudstaff');
+			$this->_helper->redirector('staff');
 		}
 		$form=$this->_formAdd;
 		if (!$form->isValid($_POST)) {
 			$form->setDescription('Attenzione: alcuni dati inseriti sono errati.');
-                        return $this->render('crudstaff');	
+                        return $this->render('staff');	
 		}
 		$values = $form->getValues();
 		$esito = $this->_userModel->addUtente($values);
                 
                 if($esito){
-                        return $this->_helper->redirector('crudstaff');
+                        return $this->_helper->redirector('staff');
                 }
                 else{
                     $form->setDescription('Attenzione: esiste già un utente con quell\'username.');
-                    return $this->render('crudstaff');
+                    return $this->render('staff');
                 }
                 
         }
@@ -69,23 +133,23 @@ class AdminController extends Zend_Controller_Action {
     }
     
     
-    public function crudAction() {
+    public function crudstaffAction() {
             if (!$this->getRequest()->isPost()) {
-                    $this->_helper->redirector('crudstaff');
+                    $this->_helper->redirector('staff');
             }
             $form=$this->_formCrud;
             if (!$form->isValid($_POST)) {
                     $form->setDescription('Attenzione: alcuni dati inseriti sono errati.');
-                    return $this->render('crudstaff');	
+                    return $this->render('staff');	
             }
             $values = $form->getValues();
             
             if ($values['opzione'] == 'delete') {
                 $this->_userModel->deleteUser($values);
-                return $this->_helper->redirector('crudstaff');
+                return $this->_helper->redirector('staff');
                 
             } else if ($values['opzione'] == 'modify') {
-                $this->_helper->redirector('crudstaff', 'admin', '', array('user' => $values['username']));
+                $this->_helper->redirector('staff', 'admin', '', array('user' => $values['username']));
             }
     }
     
@@ -94,7 +158,7 @@ class AdminController extends Zend_Controller_Action {
             $this->_formCrud = new Application_Form_Admin_Crudstaff_Crud();
             $this->_formCrud->setAction($urlHelper->url(array(
                             'controller' => 'admin',
-                            'action' => 'crud',
+                            'action' => 'crudstaff',
                             ),
                             'default'
                             ));
@@ -103,17 +167,17 @@ class AdminController extends Zend_Controller_Action {
     
     public function modifystaffAction() {
             if (!$this->getRequest()->isPost()) {
-                    $this->_helper->redirector('crudstaff');
+                    $this->_helper->redirector('staff');
             }
             $form=$this->_formModify;
             $form1=$this->_formCrud;
             if (!$form->isValid($_POST)) {
                     $form1->setDescription('Attenzione: la modifica non è andata a buon fine.');
-                    return $this->render('crudstaff');	
+                    return $this->render('staff');	
             }
             $values = $form->getValues();
             $this->_userModel->modifyUser($values);
-            $this->_helper->redirector('crudstaff');
+            $this->_helper->redirector('staff');
     }
     
     private function modifyStaffForm(){
@@ -128,15 +192,53 @@ class AdminController extends Zend_Controller_Action {
             return $this->_formModify;
         
     }
+
+
+
+
+    
+    public function userAction(){
+        
+    }
     
     public function deleteuserAction(){
-        
+            if (!$this->getRequest()->isPost()) {
+            $this->_helper->redirector('user');
+            }
+            $form=$this->_formDeleteUser;
+            if (!$form->isValid($_POST)) {
+                    $form->setDescription('Attenzione: l\'eliminazione non è andata a buon fine.');
+                    return $this->render('user');	
+            }
+            $values = $form->getValues();
+            $this->_userModel->deleteUser($values);
+            $this->_helper->redirector('user');
     }
     
+    public function deleteuserForm(){
+            $urlHelper = $this->_helper->getHelper('url');
+            $this->_formDeleteUser = new Application_Form_Admin_Crudutenti_Elimina();
+            $this->_formDeleteUser->setAction($urlHelper->url(array(
+                            'controller' => 'admin',
+                            'action' => 'deleteuser',
+                            ),
+                            'default'
+                            ));
+            return $this->_formDeleteUser;
+     
+    }
+    
+    
+    
+    
+    
     public function statisticheAction(){
-        
     }
 
+    
+    
+    
+    
     public function logoutAction() {
         $this->_authService->clear();
         return $this->_helper->redirector('index', 'public');

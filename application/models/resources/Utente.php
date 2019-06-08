@@ -44,8 +44,17 @@ class Application_Resource_Utente extends Zend_Db_Table_Abstract {
         return $this->fetchAll($select);
     }
     
+    public function getAllUsers(){
+        $select = $this->select()
+                ->where('role =?', 'user')
+                ->order('username');
+        
+        return $this->fetchAll($select);
+    }
+    
     public function deleteUser($values){
-        $username = $values['username'];
-        $this->delete(array('username = ?' => $username));
+        foreach ($values['username'] as $utente){
+        $this->delete(array('username = ?' => $utente));
+        }
     }
 }
