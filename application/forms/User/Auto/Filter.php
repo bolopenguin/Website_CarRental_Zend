@@ -20,7 +20,9 @@ class Application_Form_User_Auto_Filter extends App_Filter_Abstract {
             'label' => 'Prezzo Max',
             'required' => false,
             'filters' => array('LocalizedToNormalized'),
-            'validators' => array(array('Float', true, array('locale' => 'en_US'))),
+            'validators' => array(
+                                    array('Float', true, array('locale' => 'en_US')),                      
+                                  ),
             'decorators' => $this->elementDecorators,
         ));
 
@@ -37,7 +39,11 @@ class Application_Form_User_Auto_Filter extends App_Filter_Abstract {
 
          $this->addElement('text','inizio', array(
             'label' => 'Data Inizio',
-            'for' => 'pricemin',
+            'validators' => array(
+                                  array('Date',array('format' => 'Y-m-d')),
+                                  
+                                  ),
+            'format' => 'Y-m-d',
             'required' => true,
             'filters' => array('LocalizedToNormalized'),
             'decorators' => $this->SecondRowDecorators,

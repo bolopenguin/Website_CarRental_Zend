@@ -1,12 +1,8 @@
-<?php $this->headScript() -> captureStart() ?>
-function getConfirm(){
-var question = confirm("Vuoi confermare la tua prenotazione?");
-if(question==true) window.alert("Prenotazione Confermata. Grazie!")
-return true;
-} else{
-    window.alert("Annulato.");
-    return false;
-    }
+<?php $this->headScript()
+	->appendFile('https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js')
+	->appendFile($this->baseUrl('js/functions.js'))
+	->captureStart() ?>
+
 
 <?php $this->headScript() -> captureEnd() ?>
 
@@ -19,9 +15,9 @@ return true;
     <h2 style="text-align:center; color: #333;">
         LA NOSTRA FLOTTA
     </h2>
-    <?php if($this->empty==1) :?>
-        <?php echo 'INSERISCI IL PERIODO DI PRENOTAZIONE PER VEDERE LE AUTO DISPONIBILI.'
-        . 'È anche possibile migliorare la ricerca inserenzo le tue preferenze di costi e numuero minimo di posti desiderato';
+    <?php if($this->empty == 'yes') :?>
+        <?php echo '<p style="font-weight:bolder; text-align:center; color:red; margin-bottom:20px;"> ATTENZIONE: Inserisci un periodo di noleggio per poter prenotare un\''
+        . 'auto</p>';
         ?>
     <?php endif; ?>
     <?php foreach ($this->auto as $auto) : ?>
@@ -46,10 +42,31 @@ return true;
                         
                     </div>
                 </div>
-         <a>
-             <div class="borderprezzo">
-                 <form>
-                     <input type="button" onclick="window.alert" value="Noleggia a soli  <?php echo $auto->prezzo_giornaliero . '€' ?>"> 
+         
+         <a href="
+                <?php if($this->empty != 'yes'): ?>
+                      <?=
+                      $this->url(array(
+                      'controller' => 'user',
+                      'action'     => 'addorder',
+                      'usr'        =>  $this->authInfo('username'),
+                      'inizio'     =>  $this->datainizio,
+                      'fine'       =>  $this->datafine,
+                      'targa'      =>  $auto->targa,                
+                      ), 
+                     'default',true);
+                      ?>
+             <?php endif; ?>
+            ">
+             <div class="buttonuser">
+                 <form id="pricebtn">
+                     <input type="button" onclick="<?php if($this->empty != 'yes' ):?>
+                                                          <?php echo 'getConfirm()' ?>                                                                       
+                                                   <?php else :?>
+                                                          <?php echo 'alert(\'Inserisci prima una data di inizio e una di fine\')' ?>
+                                                   <?php endif; ?>                                
+                                                  " 
+                            value="Noleggia a soli  <?php echo $auto->prezzo_giornaliero . '€' ?>">
                  </form>
             </div>
          </a>
@@ -59,7 +76,7 @@ return true;
 
     <?php
     if ($this->auto instanceof Zend_Paginator) {
-        echo $this->paginationControl($this->auto, 'Sliding', 'public/_paginator.phtml');
+        echo '<div style="margin-top:40px; text-align:center;">'.$this->paginationControl($this->auto, 'Sliding', 'public/_paginator.phtml').'</div>';
     }
     ?>
 </div>

@@ -49,5 +49,9 @@ class Application_Resource_Prenotazione extends Zend_Db_Table_Abstract
                                        
         return $this->fetchAll($select);
     }
+    
+       public function addOrder($order){
+       $this->insert($order);
+   }
    
 }

@@ -4,7 +4,7 @@ class UserController extends Zend_Controller_Action {
     
     protected $_catalogModel;
     protected $_userModel;
-    protected $_form1;
+    protected $_form;
     protected $_logger;
     protected $_modificaForm;
      
@@ -29,15 +29,15 @@ class UserController extends Zend_Controller_Action {
      private function getAutoForm()
     {
             $urlHelper = $this->_helper->getHelper('url');
-            $this->_form1 = new Application_Form_User_Auto_Filter();
-            $this->_form1 -> setAction($urlHelper->url(array(
+            $this->_form = new Application_Form_User_Auto_Filter();
+            $this->_form -> setAction($urlHelper->url(array(
                             'controller' => 'user',
                             'action' => 'leauto',
                             'search' => '1',
                             ),
                             'default'
                             ));
-            return $this->_form1;
+            return $this->_form;
     }
     
     public function leautoAction(){
@@ -49,15 +49,16 @@ class UserController extends Zend_Controller_Action {
         
     if($search === 0){
         
-       $this->view->assign(array('empty' => '1')); 
-       return $this->render('leauto');
+       $this->view->assign(array('empty' => 'yes')); 
+       $vetture = $this->_catalogModel->getAllAuto($paged);
+       $this->view->assign(array('auto' => $vetture));
     
     } elseif($search === 1){
         
         if (!$this->getRequest()->isPost()) {             
             $this->_helper->redirector('leauto');
         }
-        $form1=$this->_form1;
+        $form1=$this->_form;
         
         if (!$form1->isValid($_POST)) {
             $form1->setDescription('Attenzione: alcuni dati inseriti sono errati.');
@@ -67,10 +68,25 @@ class UserController extends Zend_Controller_Action {
         $values = $form1->getValues();
         $tmp = $this->_catalogModel->getNotAvaiableAuto($values);
         $vetture = $this->_catalogModel->getUserFilteredAuto($values,$tmp,$paged);
-        $this->view->assign(array('auto' => $vetture));
+        $this->view->assign(array('auto' => $vetture,
+                                  'datainizio' => $values['inizio'],
+                                  'datafine'   => $values['fine'],
+                    
+                ));
     }  
     $this->view->headTitle('Le Auto');
        
+    }
+
+
+    public function addorderAction(){
+        $neworder=array(
+        'username' => $this->_getParam('usr'),
+        'data_inizio' => $this->_getParam('inizio'),
+        'data_fine' => $this->_getParam('fine'),
+        'targa' => $this->_getParam('targa'),);
+        $this->_catalogModel->addOrder($neworder);
+        $this ->render('index');
     }
 
     

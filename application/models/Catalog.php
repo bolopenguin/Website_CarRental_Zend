@@ -39,4 +39,9 @@ class Application_Model_Catalog extends App_Model_Abstract {
     public function getNotAvaiableAuto($period){                
         return $this->getResource('Prenotazione')->getNotAvaiableAuto($period);
     }
+    
+     public function addOrder($order){
+        return $this->getResource('Prenotazione')->addOrder($order);
+        
+    }
 }
