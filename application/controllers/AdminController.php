@@ -50,7 +50,8 @@ class AdminController extends Zend_Controller_Action {
                         return $this->_helper->redirector('crudstaff');
                 }
                 else{
-                        return $this->_helper->redirector('crudstaff');
+                    $form->setDescription('Attenzione: esiste già un utente con quell\'username.');
+                    return $this->render('crudstaff');
                 }
                 
         }
