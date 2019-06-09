@@ -11,11 +11,13 @@ class AdminController extends Zend_Controller_Action {
     protected $_formFaqModify;
     
     protected $_statsModel;
+    protected $_faqModel;
     protected $_userModel;
     
     public function init() {
         $this->_userModel = new Application_Model_User;
         $this->_statsModel = new Application_Model_Stats;
+        $this->_faqModel = new Application_Model_Questions;
                 
         $this->view->inserisciForm = $this->addStaffForm();
         $this->view->crudForm = $this->crudStaffForm();
@@ -27,22 +29,48 @@ class AdminController extends Zend_Controller_Action {
         
         $this->_helper->layout->setLayout('layout');
         $this->_authService = new Application_Service_Auth();
+        
+        $this->_logger = Zend_Registry::get('log');
     }
 
     public function indexAction() { 
+        
     }
 
     public function adminareaAction(){
         
     }
     
+    
+    
+    
     public function faqAction(){
-        
+        $faq = $this->_getParam('faq', null);
+        $this->view->assign(array('faq' => $faq));
     }
     
     public function addfaqAction() {
-        
-        }
+            if (!$this->getRequest()->isPost()) {
+                    $this->_helper->redirector('faq');
+            }
+            $form=$this->_formFaqAdd;
+            if (!$form->isValid($_POST)) {
+                    $form->setDescription('Attenzione: alcuni dati inseriti sono errati.');
+                    return $this->render('faq');	
+            }
+            $values = $form->getValues();
+            $this->_logger->info($values['id']);
+            $esito = $this->_faqModel->addFaq($values);
+
+            if($esito){
+                    return $this->_helper->redirector('faq');
+            }
+            else{
+                //in teoria non ci dovrebb mai finire
+                $form->setDescription('Attenzione: qualcosa è andato storto.');
+                return $this->render('faq');
+            }
+    }
     
     private function addFaqForm(){
             $urlHelper = $this->_helper->getHelper('url');
@@ -58,7 +86,23 @@ class AdminController extends Zend_Controller_Action {
     
     
     public function crudfaqAction() {
-        
+            if (!$this->getRequest()->isPost()) {
+            $this->_helper->redirector('faq');
+            }
+            $form=$this->_formFaqCrud;
+            if (!$form->isValid($_POST)) {
+                    $form->setDescription('Attenzione: alcuni dati inseriti sono errati.');
+                    return $this->render('faq');	
+            }
+            $values = $form->getValues();
+            
+            if ($values['opzione'] == 'delete') {
+//                $this->_faqModel->deleteFaq($values);
+                return $this->_helper->redirector('faq');
+                
+            } else if ($values['opzione'] == 'modify') {
+                $this->_helper->redirector('faq', 'admin', '', array('faq' => $values['id']));
+            }
     }
     
     private function crudFaqForm(){
@@ -74,6 +118,18 @@ class AdminController extends Zend_Controller_Action {
     }
     
     public function modifyfaqAction() {
+            if (!$this->getRequest()->isPost()) {
+            $this->_helper->redirector('faq');
+            }
+            $form=$this->_formFaqModify;
+            $form1=$this->_formFaqCrud;
+            if (!$form->isValid($_POST)) {
+                    $form1->setDescription('Attenzione: la modifica non è andata a buon fine.');
+                    return $this->render('faq');	
+            }
+            $values = $form->getValues();
+            $this->_faqModel->modifyFaq($values);
+            $this->_helper->redirector('faq');
     }
     
     private function modifyFaqForm(){
@@ -87,6 +143,8 @@ class AdminController extends Zend_Controller_Action {
                             ));
             return $this->_formFaqModify;    
     }
+    
+    
     
     
     
@@ -131,7 +189,6 @@ class AdminController extends Zend_Controller_Action {
                             ));
             return $this->_formAdd;
     }
-    
     
     public function crudstaffAction() {
             if (!$this->getRequest()->isPost()) {
@@ -232,7 +289,10 @@ class AdminController extends Zend_Controller_Action {
     
     
     
+    
+    
     public function statisticheAction(){
+        
     }
 
     

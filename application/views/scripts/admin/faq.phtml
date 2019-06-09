@@ -66,3 +66,22 @@
 <h3>
     Gestisci le Faq
 </h3>
+
+<fieldset style="float: left" >
+    <legend> <h3> Inserisci una nuova Faq </h3> </legend>
+    <?php echo $this->inserisciFaqForm; ?>
+</fieldset>
+
+<fieldset style="float: left" >
+    <legend> <h3> Modifica o Elimina una Faq </h3> </legend>
+    <?php echo $this->crudFaqForm; ?>
+</fieldset>
+
+<?php if ($this->faq !== null): ?>
+
+    <fieldset style="width: 300px; clear:both;">
+        <legend> <h3> Inserisci i nuovi dati </h3> </legend>
+        <?php echo $this->modificaFaqForm->populate($this->faq);?>
+    </fieldset>
+
+<?php endif; ?>

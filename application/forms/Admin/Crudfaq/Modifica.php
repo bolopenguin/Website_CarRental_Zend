@@ -31,6 +31,11 @@ class Application_Form_Admin_Crudfaq_Modifica extends App_Form_Abstract {
             'required' => true,
             'decorators' => $this->elementDecorators,
         ));
+        
+        $this->addElement('submit', 'modifica', array(
+            'label' => 'Modifica',
+            'decorators' => $this->buttonDecorators,
+        ));
 
         $this->setDecorators(array(
             'FormElements',

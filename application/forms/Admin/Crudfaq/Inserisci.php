@@ -31,6 +31,11 @@ class Application_Form_Admin_Crudfaq_Inserisci extends App_Form_Abstract {
             'value' => $this->getIdMax(),
             'decorators' => $this->elementDecorators,
         ));
+        
+        $this->addElement('submit', 'Inserisci', array(
+            'label' => 'Inserisci',
+            'decorators' => $this->buttonDecorators,
+        ));
 
         $this->setDecorators(array(
             'FormElements',
@@ -43,7 +48,7 @@ class Application_Form_Admin_Crudfaq_Inserisci extends App_Form_Abstract {
     public function getIdMax() {
         $max = $this->_faqModel->getIdMax();
         
-        return $max + 1;    
+        return $max['id'] + 1;    
     }
 
 }

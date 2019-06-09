@@ -39,9 +39,9 @@ class Application_Form_Admin_Crudfaq_Crud extends App_Form_Abstract {
     
     protected function buildMultiOptions()
     {
-        $utenti = $this->_faqModel->getAllFaq();
+        $faq = $this->_faqModel->getAllFaq();
         $return = array();
-        foreach ($utenti as $row) {
+        foreach ($faq as $row) {
             $return[$row['id']] = $row['id'];
         }
         return $return;
