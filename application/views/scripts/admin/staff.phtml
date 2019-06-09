@@ -67,6 +67,29 @@
     Gestisci gli Utenti Staff
 </h3>
 
+<div style="float: right; margin-right: 150px">
+    <table style="background-color:#eee859; border-collapse:collapse; width: 800px; " border="">
+        <tr>
+            <th style="width: 200px"> Username </th> 
+            <th style="width: 200px"> Nome </th> 
+            <th style="width: 200px"> Cognome </th> 
+        </tr>
+    </table>
+
+    <?php foreach ($this->staff as $staff) : ?>
+        <table style="background-color:#eee859; border-collapse:collapse; width: 800px; " border="">
+            <tbody>
+                <tr>
+                    <td style="width: 200px"><?php echo '' . $staff->username  . '' ?></td>
+                    <td style="width: 200px"><?php echo'' . $staff->nome . '' ?></td>
+                    <td style="width: 200px"><?php echo'' . $staff->cognome . '' ?></td>
+                </tr>
+            </tbody>
+        </table>
+    <?php endforeach ?>
+
+</div>
+
 <fieldset style="float: left" >
     <legend> <h3> Inserisci un nuovo Utente Staff </h3> </legend>
     <?php echo $this->inserisciForm; ?>
@@ -85,3 +108,4 @@
     </fieldset>
 
 <?php endif; ?>
+

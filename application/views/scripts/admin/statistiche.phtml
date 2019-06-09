@@ -79,7 +79,7 @@
         <table style="background-color:#eee859; border-collapse:collapse; width: 800px; " border="">
             <tbody>
                 <tr>
-                    <td style="width: 200px"><?php echo '' . $i  . '' ?></td>
+                    <td style="width: 200px"><?php echo '' . date('F', mktime(0, 0, 0, $i, 10)) . '' ?></td>
                     <td style="width: 200px"><?php echo'' . $this->stats[$i] . '' ?></td>
                 </tr>
             </tbody>

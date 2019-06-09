@@ -47,6 +47,9 @@ class AdminController extends Zend_Controller_Action {
     public function faqAction(){
         $faq = $this->_getParam('faq', null);
         $this->view->assign(array('faq' => $faq));
+        
+        $domande = $this->_faqModel->getAllFaq();
+        $this->view->assign(array('domande' => $domande));
     }
     
     public function addfaqAction() {
@@ -152,6 +155,9 @@ class AdminController extends Zend_Controller_Action {
     
     
     public function staffAction(){
+        $staff = $this->_userModel->getAllStaff();
+        $this->view->assign(array('staff' => $staff));
+        
         $user = $this->_getParam('user', null);
         $this->view->assign(array('user' => $user));
     }

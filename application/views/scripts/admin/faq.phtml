@@ -67,6 +67,27 @@
     Gestisci le Faq
 </h3>
 
+<div style="float: right; margin-right: 150px">
+    <table style="background-color:#eee859; border-collapse:collapse; width: 800px; " border="">
+        <tr>
+            <th style="width: 400px"> Id </th> 
+            <th style="width: 400px"> Domanda </th> 
+        </tr>
+    </table>
+
+    <?php foreach ($this->domande as $domanda) : ?>
+        <table style="background-color:#eee859; border-collapse:collapse; width: 800px; " border="">
+            <tbody>
+                <tr>
+                    <td style="width: 400px"><?php echo '' . $domanda->id  . '' ?></td>
+                    <td style="width: 400px"><?php echo'' . $domanda->domanda . '' ?></td>
+                </tr>
+            </tbody>
+        </table>
+    <?php endforeach ?>
+
+</div>
+
 <fieldset style="float: left" >
     <legend> <h3> Inserisci una nuova Faq </h3> </legend>
     <?php echo $this->inserisciFaqForm; ?>
