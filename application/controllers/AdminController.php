@@ -38,7 +38,7 @@ class AdminController extends Zend_Controller_Action {
     }
 
     public function adminareaAction(){
-        
+        $this->view->headTitle('Area Riservata');
     }
     
     
@@ -50,6 +50,7 @@ class AdminController extends Zend_Controller_Action {
         
         $domande = $this->_faqModel->getAllFaq();
         $this->view->assign(array('domande' => $domande));
+        $this->view->headTitle('Area Riservata');
     }
     
     public function addfaqAction() {
@@ -160,6 +161,7 @@ class AdminController extends Zend_Controller_Action {
         
         $user = $this->_getParam('user', null);
         $this->view->assign(array('user' => $user));
+        $this->view->headTitle('Area Riservata');
     }
     
     public function addstaffAction() {
@@ -261,7 +263,7 @@ class AdminController extends Zend_Controller_Action {
 
     
     public function userAction(){
-        
+        $this->view->headTitle('Area Riservata');
     }
     
     public function deleteuserAction(){
@@ -298,6 +300,7 @@ class AdminController extends Zend_Controller_Action {
     
     
     public function statisticheAction(){
+        $this->view->headTitle('Area Riservata');
         $stats = $this->_statsModel->getStatsYear();
         $this->view->assign(array('stats' => $stats));
     }
