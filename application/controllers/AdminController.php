@@ -13,7 +13,7 @@ class AdminController extends Zend_Controller_Action {
     protected $_statsModel;
     protected $_faqModel;
     protected $_userModel;
-    
+
     public function init() {
         $this->_userModel = new Application_Model_User;
         $this->_statsModel = new Application_Model_Stats;
@@ -292,9 +292,11 @@ class AdminController extends Zend_Controller_Action {
     
     
     public function statisticheAction(){
-        
+        $stats = $this->_statsModel->getStatsYear();
+        $this->view->assign(array('stats' => $stats));
     }
-
+   
+   
     
     
     

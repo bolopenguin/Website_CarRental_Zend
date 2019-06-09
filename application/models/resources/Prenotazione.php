@@ -10,6 +10,26 @@ class Application_Resource_Prenotazione extends Zend_Db_Table_Abstract
     {            
     }
     
+    public function getStatsYear(){
+        $stats = array();
+        $anno = date('Y');
+        
+        for( $i=1;  $i <=12 ; $i++  ){
+        $data_inizio= date("Y-m-d", strtotime($anno."-".$i."-01"));
+        $data_fine= date("Y-m-d", strtotime($anno."-".$i."-31"));
+            
+        $select = $this->select()
+                ->from('prenotazione', array('num'=>'COUNT(*)'))
+                ->where('data_inizio >=?', $data_inizio)
+                ->where('data_inizio <=?', $data_fine);
+
+        $result = $this->fetchRow($select);
+        $stats[$i] = $result["num"];          
+        }
+        
+        return $stats;       
+    }
+    
     public function getStatsMonth($mese){
         $anno = date('Y');
         $data_inizio= date("Y-m-d", strtotime($anno."-".$mese."-01"));
@@ -49,5 +69,7 @@ class Application_Resource_Prenotazione extends Zend_Db_Table_Abstract
        public function addOrder($order){
        $this->insert($order);
    }
+   
+
    
 }
