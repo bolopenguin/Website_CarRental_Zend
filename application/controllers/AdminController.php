@@ -276,7 +276,7 @@ class AdminController extends Zend_Controller_Action {
                     return $this->render('user');	
             }
             $values = $form->getValues();
-            $this->_userModel->deleteUser($values);
+            $this->_userModel->deleteUsers($values);
             $this->_helper->redirector('user');
     }
     

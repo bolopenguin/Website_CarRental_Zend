@@ -29,6 +29,10 @@ class Application_Model_User extends App_Model_Abstract {
         return $this->getResource('Utente')->getAllUsers();
     }
     
+    public function deleteUsers($values){
+        return $this->getResource('Utente')->deleteUsers($values);
+    }
+    
     public function deleteUser($values){
         return $this->getResource('Utente')->deleteUser($values);
     }
