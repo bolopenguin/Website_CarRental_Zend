@@ -1,8 +1,8 @@
-<h2>
+<h2 class="headerAdmin">
     Area Riservata Amministratore
 </h2>
 
-<nav style="width: 500px;float: left; margin-left: 1em">
+<nav class="barraNavigazioneAdmin">
     <a href="<?=
     $this->url(array(
         'controller' => 'staff',
@@ -12,8 +12,6 @@
     ?>" title="Operazioni Staff">     
         Funzionalità dello Staff
     </a>
-
-    <br>
     
     <a href="<?=
     $this->url(array(
@@ -25,8 +23,6 @@
         Gestisci Staff
     </a>
 
-    <br>
-
     <a href="<?=
     $this->url(array(
         'controller' => 'admin',
@@ -36,8 +32,6 @@
     ?>" title="Elimina Users">     
         Elimina Utenti
     </a>
-    
-    <br>
 
     <a href="<?=
     $this->url(array(
@@ -49,8 +43,6 @@
         Statistiche Annuali
     </a>
     
-    <br> 
-    
     <a href="<?=
     $this->url(array(
         'controller' => 'admin',
@@ -59,6 +51,16 @@
     );
     ?>" title="Crud Faq">     
         Gestione FAQ
+    </a>
+    
+    <a href="<?=
+    $this->url(array(
+        'controller' => '',
+        'action' => '',
+            ), 'default', true
+    );
+    ?>" title="chat" style="border-right: 2px solid #333;">     
+        Vai alla Chat
     </a>
 
 </nav>

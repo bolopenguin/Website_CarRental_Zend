@@ -53,9 +53,6 @@ body{
     top:2.1%;
 }
 
-#servizi {
-    clear:left;
-}
 
 .footer {
     background-color: #333;
@@ -242,4 +239,45 @@ label.optional{
     width: 300px;
     height: auto;
     float: left;
+}
+
+/* AREA USER */
+
+.mainGestioneUtente{
+    margin-left: 310px;
+}
+
+/*  AREA ADMIN */
+
+.barraNavigazioneAdmin {
+    height: 50px;
+}
+
+.barraNavigazioneAdmin a {
+    padding-top: 10px;
+    border-bottom: 2px solid #333;
+    border-left: 2px solid #333;
+    border-top: 2px solid #333;
+    float: left;
+    display: block;
+    color: #333;
+    height: 30px;
+    width: 180px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.headerAdmin{
+    text-align: center;
+    color: #333;
+}
+
+.tableAdmin{
+    background-color:#eee859; 
+    border-collapse:collapse; 
+}
+
+.element textArea{
+    width: 400px;
+    resize: none;
 }

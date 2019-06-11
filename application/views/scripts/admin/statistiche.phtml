@@ -1,8 +1,8 @@
-<h2>
+<h2 class="headerAdmin">
     Area Riservata Amministratore
 </h2>
 
-<nav style="width: 500px;float: left; margin-left: 1em">
+<nav class="barraNavigazioneAdmin">
     <a href="<?=
     $this->url(array(
         'controller' => 'staff',
@@ -12,8 +12,6 @@
     ?>" title="Operazioni Staff">     
         Funzionalità dello Staff
     </a>
-
-    <br>
     
     <a href="<?=
     $this->url(array(
@@ -25,8 +23,6 @@
         Gestisci Staff
     </a>
 
-    <br>
-
     <a href="<?=
     $this->url(array(
         'controller' => 'admin',
@@ -36,8 +32,6 @@
     ?>" title="Elimina Users">     
         Elimina Utenti
     </a>
-    
-    <br>
 
     <a href="<?=
     $this->url(array(
@@ -49,8 +43,6 @@
         Statistiche Annuali
     </a>
     
-    <br> 
-    
     <a href="<?=
     $this->url(array(
         'controller' => 'admin',
@@ -60,27 +52,37 @@
     ?>" title="Crud Faq">     
         Gestione FAQ
     </a>
+    
+    <a href="<?=
+    $this->url(array(
+        'controller' => '',
+        'action' => '',
+            ), 'default', true
+    );
+    ?>" title="chat" style="border-right: 2px solid #333;">     
+        Vai alla Chat
+    </a>
 
 </nav>
 
-<h3>
+<h3 class="headerAdmin">
     Statistiche annuali delle prenotazioni
 </h3>
 
-<div style="float: right; margin-right: 150px">
-    <table style="background-color:#eee859; border-collapse:collapse; width: 800px; " border="">
+<div style="margin-left: 150px">
+    <table class="tableAdmin" style="width: 800px;" border="">
         <tr>
-            <th style="width: 200px"> Mese </th> 
-            <th style="width: 200px"> Numero Prenotazioni </th>
+            <th style="width: 400px"> Mese </th> 
+            <th style="width: 400px"> Numero Prenotazioni </th>
         </tr>
     </table>
 
     <?php for( $i=1;  $i <=12 ; $i++) : ?>
-        <table style="background-color:#eee859; border-collapse:collapse; width: 800px; " border="">
+        <table class="tableAdmin" style="width: 800px; " border="">
             <tbody>
                 <tr>
-                    <td style="width: 200px"><?php echo '' . date('F', mktime(0, 0, 0, $i, 10)) . '' ?></td>
-                    <td style="width: 200px"><?php echo'' . $this->stats[$i] . '' ?></td>
+                    <td style="width: 400px"><?php echo '' . date('F', mktime(0, 0, 0, $i, 10)) . '' ?></td>
+                    <td style="width: 400px"><?php echo'' . $this->stats[$i] . '' ?></td>
                 </tr>
             </tbody>
         </table>
