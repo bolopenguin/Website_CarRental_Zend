@@ -13,7 +13,7 @@ class Application_Form_User_Dati_Modifica extends App_Form_Abstract
         
             $this->addElement('text', 'username', array(
             'label' => 'Username',
-            'required' => false,
+            'required' => true,
             'readonly' => true,
             'filters' => array('LocalizedToNormalized'),
             'decorators' => $this->elementDecorators,
@@ -22,7 +22,7 @@ class Application_Form_User_Dati_Modifica extends App_Form_Abstract
                     
             $this->addElement('text', 'role', array(
             'label' => 'role',
-            'required' => false,
+            'required' => true,
             'readonly' => true,
             'filters' => array('LocalizedToNormalized'),
             'decorators' => $this->elementDecorators,
@@ -31,21 +31,21 @@ class Application_Form_User_Dati_Modifica extends App_Form_Abstract
             
             $this->addElement('text', 'nome', array(
             'label' => 'Nome',
-            'required' => false,
+            'required' => true,
             'filters' => array('LocalizedToNormalized'),
             'decorators' => $this->elementDecorators,
         		));
             
             $this->addElement('text', 'cognome', array(
             'label' => 'Cognome',
-            'required' => false,
+            'required' => true,
             'filters' => array('LocalizedToNormalized'),
             'decorators' => $this->elementDecorators,
         		));
             
             $this->addElement('text', 'residenza', array(
             'label' => 'Città',
-            'required' => false,
+            'required' => true,
                 'decorators' => $this->elementDecorators,
         		));
             
@@ -53,7 +53,7 @@ class Application_Form_User_Dati_Modifica extends App_Form_Abstract
             
             $this->addElement('text', 'password', array(
             'label' => 'Nuova Password',
-            'required' => false,
+            'required' => true,
             'filters' => array('LocalizedToNormalized'),
             'decorators' => $this->elementDecorators,
         		));

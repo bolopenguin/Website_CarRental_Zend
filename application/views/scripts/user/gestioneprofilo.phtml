@@ -1,6 +1,7 @@
 <div class="mainGestioneUtente">
-    <table id="table1" border>
-        <caption id="caption1" style="font-size: 18px"> <b>Il tuo profilo</b> </caption>
+    <div class="tabella1">
+    <table id="table1">
+        <caption id="caption1"> <b>Il tuo profilo</b> </caption>
             <tr>
                 <th> Username </th> 
                 <th> Nome </th>
@@ -13,23 +14,28 @@
             <tr>
                 <td><?php echo $this->utente->username . ' '?></td>
                 <td><?php echo $this->utente->nome . ' '?> </td>
-                <td> <?php echo $this->utente->cognome . ' '?> </td>
-                <td> <?php echo $this->utente->residenza . ' '?> </td>
+                <td><?php echo $this->utente->cognome . ' '?> </td>
+                <td><?php echo $this->utente->residenza . ' '?> </td>
                 <td><?php echo $this->utente->data_nascita . ' '?></td>
                 <td><?php echo $this->utente->occupazione . ' '?></td>
                 <td><?php echo $this->utente->password . ' '?></td>
             </tr>                  
     </table>
-</div>                
-<h3>Modifica Profilo</h3> 
-
-<div>
-    <?php echo $this->modificaForm->populate($this->utente->username) ?>
+    </div>
 </div>
 
-<div class="mainGestioneUtente">
-    <table id="table1" border>
-        <caption id="caption1" style="font-size: 18px"> <b>Le tue Prenotazioni</b> </caption>
+
+<fieldset style="width: 300px; float: left;">
+    <legend> <h3 class="headerAdmin"> Modifica Profilo </h3> </legend>
+    <?php echo $this->modificaForm->populate($this->utente->username) ?>
+</fieldset>
+
+
+
+
+<div>
+    <table class="tabella2" border>
+        <caption id="caption2"> <b>Le tue Prenotazioni</b> </caption>
             <tr>
                 <th> Targa </th> 
                 <th> Data Inizio </th>
@@ -43,4 +49,4 @@
             </tr>        
             <?php endforeach ?>
     </table>
-</div>  
+</div>

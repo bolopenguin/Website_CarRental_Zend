@@ -86,7 +86,7 @@ class UserController extends Zend_Controller_Action {
         'data_fine' => $this->_getParam('fine'),
         'targa' => $this->_getParam('targa'),);
         $this->_catalogModel->addOrder($neworder);
-        $this ->render('index');
+        $this ->render('gestioneprofilo');
     }
 
     
@@ -101,7 +101,8 @@ class UserController extends Zend_Controller_Action {
         $utente = $this->_userModel->getUserByName($username);
         $prenotazioni = $this->_userModel->getPrenotazioni($username);
         $this->view->assign(array('prenotazioni' => $prenotazioni));
-        $this->view->assign(array('utente' => $utente));      
+        $this->view->assign(array('utente' => $utente)); 
+        $this->view->headTitle('Area Riservata');
     }
     
     public function modificaAction(){
@@ -110,7 +111,7 @@ class UserController extends Zend_Controller_Action {
 		}
 		$form=$this->_modificaForm;
 		if (!$form->isValid($_POST)) {
-			$form->setDescription('Attenzione: la modifica non Ã¨ andata a buon fine. Riprovare');
+			$form->setDescription('Attenzione: la modifica non è andata a buon fine. Riprovare');
                         return $this->render('gestioneprofilo');	
 		}
 		$values = $form->getValues();
