@@ -24,9 +24,20 @@
     </div>
 </div>
 
+    <a href="<?=                     
+                      $this->url(array(
+                      'controller' => 'user',
+                      'action'     => 'chat',
+                      'sender'     => $this->authInfo('username'),                
+                      ), 
+                     'default',true);
+                      ?>
+           
+            ">
+    Assistenza</a>
 
 <fieldset style="width: 300px; float: left;">
-    <legend> <h3 class="headerAdmin"> Modifica Profilo </h3> </legend>
+    <legend> <h3 class="headerAdmin" style="font-style: italic;"> Modifica Profilo </h3> </legend>
     <?php echo $this->modificaForm->populate($this->utente->username) ?>
 </fieldset>
 

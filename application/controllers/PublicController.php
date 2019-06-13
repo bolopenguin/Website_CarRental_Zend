@@ -15,7 +15,6 @@ class PublicController extends Zend_Controller_Action {
     public function init() {
         $this->_helper->layout->setLayout('layout'); //helper layout che definisce l'attivazione del layout all'interno della nostra applicazione
         // setLayout va a recuperare il file main.phtml nella cartella di layout che abbiamo deinito nel file application.ini
-        $this->_logger = Zend_Registry::get('log');
         $this->_catalogModel = new Application_Model_Catalog();
         $this->_questionsModel = new Application_Model_Questions();
         $this->_userModel = new Application_Model_User();
@@ -92,7 +91,7 @@ class PublicController extends Zend_Controller_Action {
     }
     
     public function loginAction() {
-        
+            $this->view->headTitle('Login');
    }
     
     public function authenticateAction() {

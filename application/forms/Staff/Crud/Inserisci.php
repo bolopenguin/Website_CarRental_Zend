@@ -51,7 +51,7 @@ class Application_Form_Staff_Crud_Inserisci extends App_Form_Abstract {
         $this->addElement('file', 'foto', array(
             'label' => 'Foto',
             'destination' => APPLICATION_PATH . '/../public/images/auto',
-            'required' => false,
+            'required' => true,
             'validators' => array( 
             array('Count', false, 1),
             array('Extension', false, array('jpg', 'png'))),

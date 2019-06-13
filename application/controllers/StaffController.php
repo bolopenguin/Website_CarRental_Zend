@@ -21,7 +21,6 @@ class StaffController extends Zend_Controller_Action {
         $this->view->eliminaForm = $this->deleteAutoForm();
         $this->view->selezionaForm = $this->selectAutoForm();
         $this->view->modificaForm = $this->modifyAutoForm();
-        $this->_logger = Zend_Registry::get('log');
     }
 
     public function indexAction() {

@@ -1,0 +1,24 @@
+<h3 class="headerAdmin"> 
+Area Messaggistica
+</h3>
+
+
+<fieldset style="float: left;">
+<legend> <h3 class="headerAdmin"> Scrivi qua il Messaggio </h3> </legend>
+  <?php echo $this->chatForm->populate(array('currentusr' => $this->me)) ?>
+</fieldset>
+
+<div id="chatlist" style="margin-top: 45px;">
+    <table>
+    <?php foreach ($this->chat as $chat) : ?>
+        <tr>
+        <?php if($chat->sender === $this->me): ?>
+            <?php echo '<td class="me">'.$chat->msg; ?>
+        <?php else: ?>
+            <?php echo'<td class="other">'.$chat->msg;  ?>
+        <?php endif; ?>
+            
+        <?php echo '</td> </tr>'?>
+      <?php endforeach ?>
+    </table>
+</div>

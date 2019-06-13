@@ -5,26 +5,71 @@ class UserController extends Zend_Controller_Action {
     protected $_catalogModel;
     protected $_userModel;
     protected $_form;
-    protected $_logger;
     protected $_modificaForm;
-     
+    protected $_chatForm;
+    protected $_chatModel;
      
     public function init() {
-        $this->_logger = Zend_Registry::get('log');
-
-
         $this->_helper->layout->setLayout('layout');
         $this->view->filterForm = $this->getAutoForm();
         $this->view->modificaForm = $this->getModificaForm();
         $this->_authService = new Application_Service_Auth();
         $this->_catalogModel = new Application_Model_Catalog();
         $this->_userModel = new Application_Model_User();
-        
+        $this->_chatModel = new Application_Model_Chat();
+        $this->view->chatForm = $this->getChatForm();
     }
 
     public function indexAction() {
         
     }
+        public function chatAction(){
+            
+             $sender = $this->_getParam('sender', 0);
+             $sended = $this->_getParam('sended',0);
+             $receiver = 'admin';
+             $chatlist = $this->_chatModel->getAllChatUser($sender);
+             $this->view->assign(array('chat' => $chatlist,
+                                        'me'  => $sender));
+             
+            if($sended == 0 ){
+                $this->render('chat');
+            }
+            else if($sended == 1){
+                if (!$this->getRequest()->isPost()) {             
+                     $this->_helper->redirector('gestioneprofilo');
+                }
+                $chatform = $this->_chatForm;        
+                if (!$chatform->isValid($_POST)) {
+                     $chatform->setDescription('Attenzione: alcuni dati inseriti sono errati.');
+                     $this->render('chat');
+                    }
+                $currentmsg = $chatform->getValues();
+                $this->_chatModel->sendMessage($sender,$receiver,$currentmsg);
+                $this->_helper->redirector('chat','user','',
+                                            array('sender' => $currentmsg['currentusr'],
+                                                  ));
+            }
+        $this->view->headTitle('Assistenza'); 
+    }  
+    
+        
+    private function getChatForm(){
+            $urlHelper = $this->_helper->getHelper('url');
+            $this->_chatForm = new Application_Form_User_Chat_Message();
+            $this->_chatForm -> setAction($urlHelper->url(array(
+                            'controller' => 'user',
+                            'action' => 'chat',
+                            'sended' => 1,
+                            ),
+                            'default'
+                            ));
+            return $this->_chatForm;
+    }
+    
+    
+    
+    
     
      private function getAutoForm()
     {
@@ -39,6 +84,9 @@ class UserController extends Zend_Controller_Action {
                             ));
             return $this->_form;
     }
+    
+    
+    
     
     public function leautoAction(){
 
@@ -86,9 +134,12 @@ class UserController extends Zend_Controller_Action {
         'data_fine' => $this->_getParam('fine'),
         'targa' => $this->_getParam('targa'),);
         $this->_catalogModel->addOrder($neworder);
-        $this ->render('gestioneprofilo');
+        $this->_helper->redirector('leauto');
     }
 
+    
+    
+    
     
     public function logoutAction() {
         $this->_authService->clear();

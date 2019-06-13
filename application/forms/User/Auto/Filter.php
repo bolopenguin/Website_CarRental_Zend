@@ -20,30 +20,22 @@ class Application_Form_User_Auto_Filter extends App_Filter_Abstract {
             'label' => 'Prezzo Max',
             'required' => false,
             'filters' => array('LocalizedToNormalized'),
-            'validators' => array(
-                                    array('Float', true, array('locale' => 'en_US')),                      
-                                  ),
+            'validators' => array(array('Float', true, array('locale' => 'en_US'))),
             'decorators' => $this->elementDecorators,
         ));
 
         $this->addElement('text', 'numposti', array(
             'label' => 'Numero posti',
             'required' => false,
+             'validators' => array(array('Int', true, array('locale' => 'en_US'))),
             'decorators' => $this->elementDecorators,
         ));
 
-        $this->addElement('submit', 'search', array(
-            'label' => 'Ricerca',
-            'decorators' => $this->buttonDecorators,
-        ));
-
+        
          $this->addElement('text','inizio', array(
             'label' => 'Data Inizio',
-            'validators' => array(
-                                  array('Date',array('format' => 'Y-m-d')),
-                                  
-                                  ),
-            'format' => 'Y-m-d',
+            'placeholder' => 'aaaa-mm-gg',
+            'validators' => array(array('Date', true, array('format' => "Y-m-d"))),
             'required' => true,
             'filters' => array('LocalizedToNormalized'),
             'decorators' => $this->SecondRowDecorators,
@@ -51,10 +43,18 @@ class Application_Form_User_Auto_Filter extends App_Filter_Abstract {
 
         $this->addElement('text', 'fine', array(
             'label' => 'Data Fine',
+            'placeholder' => 'aaaa-mm-gg',
+            'validators' => array(array('Date', true, array('format' => "Y-m-d"))),
             'required' => true,
             'filters' => array('LocalizedToNormalized'),
             'decorators' => $this->SecondRowDecorators,
         ));
+        
+        $this->addElement('submit', 'search', array(
+            'label' => 'Ricerca',
+            'decorators' => $this->buttonDecorators,
+        ));
+
         
         $this->setDecorators(array(
             'FormElements',

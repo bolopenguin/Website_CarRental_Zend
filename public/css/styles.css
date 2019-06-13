@@ -58,6 +58,13 @@ body{
     background-color: #333;
 }
 
+#page{
+  height: auto;
+  min-height: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+
 /*HOMEPAGE*/
 
 .HomeMain {
@@ -172,6 +179,22 @@ width: 160px;
     margin-top: 5px;
 }
 
+#pricebtn input{
+    width: 132px;
+    height: 40px;
+}
+
+.buttonuser{
+text-align: center;
+font-weight: bolder;
+background: #E0E0E0;
+margin-top: 10px;
+margin-left: 900px;
+margin-bottom: 10px;
+border: 3px solid red;
+width: 132px;
+}
+
 /*Faq*/
 
 .faq {
@@ -201,7 +224,7 @@ width: 160px;
 /*FORMCATALOGO*/
 
 #search{
-    margin-left: 20px;
+/*    margin-top: 10px;*/
 }
 
 label.optional{
@@ -219,6 +242,9 @@ label.optional{
 .filtertable{
     padding-top: 11px;
 }
+.filtertable label{
+    color: black;
+}
 
 .filters{
     margin-top: -10px;
@@ -233,21 +259,117 @@ label.optional{
     color: red;
 }
 
-/*   AREA ADMIN  */
+/* AREA USER */
 
+.mainGestioneUtente{
+    display: flex;
+    justify-content: center;
+}
+.tabella1{
+    margin-top:10px;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;
+    width:700px;
+    border-collapse: collapse;
+    background: #333;
+}
+
+.tabella1 th {
+  color: #ffd700;
+  border-bottom: 1px solid #ffd700;
+  padding: 12px 17px;
+}
+
+.tabella1 td {
+  color: #CAD4D6;
+  border-bottom: 1px solid #ffd700;
+  border-right:1px solid #ffd700;
+  padding: 7px 17px;
+}
+
+.tabella1 tr:last-child td {
+  border-bottom: none;
+}
+.tabella1 td:last-child {
+  border-right: none;
+}
+
+.tabella2{
+    margin-left: 400px;
+    margin-top:10px;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;
+    width:700px;
+    border-collapse: collapse;
+    background: #333;
+}
+
+.tabella2 th {
+  color: #ffd700;
+  border-bottom: 1px solid #ffd700;
+  padding: 12px 17px;
+}
+
+.tabella2 td {
+  color: #CAD4D6;
+  border-bottom: 1px solid #ffd700;
+  border-right:1px solid #ffd700;
+  padding: 7px 17px;
+}
+
+.tabella2 tr:last-child td {
+  border-bottom: none;
+}
+.tabella2 td:last-child {
+  border-right: none;
+}
+
+#caption1{
+    font-size: 18px; 
+    color:#ffd700; 
+    font-style: italic;
+    font-family:sans-serif;
+}
+
+#caption2{
+    font-size: 18px; 
+    font-family: sans-serif; 
+    font-style: italic; 
+    color:#ffd700;
+    background-color: #333;
+}
+
+#username-label{
+    color:black;
+}
+
+#role-label{
+    color:black;
+}
+
+#nome-label{
+    color:black;
+}
+
+#cognome-label{
+    color:black;
+}
+
+#residenza-label{
+    color:black;
+}
+
+#password-label{
+    color:black;
+}
+
+
+/*  AREA ADMIN */
 .adminsection{
     width: 300px;
     height: auto;
     float: left;
 }
-
-/* AREA USER */
-
-.mainGestioneUtente{
-    margin-left: 310px;
-}
-
-/*  AREA ADMIN */
 
 .barraNavigazioneAdmin {
     height: 50px;
@@ -267,6 +389,26 @@ label.optional{
     text-decoration: none;
 }
 
+.barraNavigazioneStaff{
+    display: flex;
+    justify-content: center;
+    height: 50px;
+}
+
+.barraNavigazioneStaff a {
+    padding-top: 10px;
+    border-bottom: 2px solid #333;
+    border-left: 2px solid #333;
+    border-top: 2px solid #333;
+    float: left;
+    display: block;
+    color: #333;
+    height: 30px;
+    width: 200px;
+    text-align: center;
+    text-decoration: none;
+}
+
 .headerAdmin{
     text-align: center;
     color: #333;
@@ -280,4 +422,51 @@ label.optional{
 .element textArea{
     width: 400px;
     resize: none;
+}
+
+/*CHAT*/
+
+#chatlist table{
+    margin-left: 600px;
+    width: 500px;
+}
+
+input#send{
+    margin-top: 30px;
+
+}
+
+#selectuserChat{
+    display: flex;
+    justify-content: center;
+}
+
+td.me{
+    text-align: right;
+    margin-left: 100px;
+    background-color: greenyellow;
+}
+
+td.other{
+    text-align: left;
+    padding-right: 100px;
+    background-color: lightskyblue;
+}
+
+
+/*LOGIN*/
+
+.caption{
+    cursor: pointer;
+    margin-top: -35px;
+    margin-left: 145px;
+}
+
+.block{
+    float: left;
+}
+
+.module2{
+
+    margin-left: 600px;
 }

@@ -9,15 +9,19 @@ class AdminController extends Zend_Controller_Action {
     protected $_formFaqAdd;
     protected $_formFaqCrud;
     protected $_formFaqModify;
+    protected $_formUserSelect;
+    protected $_formChat;
     
     protected $_statsModel;
     protected $_faqModel;
     protected $_userModel;
+    protected $_chatModel;
 
     public function init() {
         $this->_userModel = new Application_Model_User;
         $this->_statsModel = new Application_Model_Stats;
         $this->_faqModel = new Application_Model_Questions;
+        $this->_chatModel = new Application_Model_Chat();
                 
         $this->view->inserisciForm = $this->addStaffForm();
         $this->view->crudForm = $this->crudStaffForm();
@@ -26,11 +30,11 @@ class AdminController extends Zend_Controller_Action {
         $this->view->inserisciFaqForm = $this->addFaqForm();
         $this->view->crudFaqForm = $this->crudFaqForm();
         $this->view->modificaFaqForm = $this->modifyFaqForm();
+        $this->view->selectUserForm = $this->SelectUserForm();
+        $this->view->chatForm = $this->sendChatForm();
         
         $this->_helper->layout->setLayout('layout');
         $this->_authService = new Application_Service_Auth();
-        
-        $this->_logger = Zend_Registry::get('log');
     }
 
     public function indexAction() { 
@@ -54,6 +58,8 @@ class AdminController extends Zend_Controller_Action {
     }
     
     public function addfaqAction() {
+            $domande = $this->_faqModel->getAllFaq();
+            $this->view->assign(array('domande' => $domande));
             if (!$this->getRequest()->isPost()) {
                     $this->_helper->redirector('faq');
             }
@@ -63,7 +69,6 @@ class AdminController extends Zend_Controller_Action {
                     return $this->render('faq');	
             }
             $values = $form->getValues();
-            $this->_logger->info($values['id']);
             $esito = $this->_faqModel->addFaq($values);
 
             if($esito){
@@ -90,6 +95,8 @@ class AdminController extends Zend_Controller_Action {
     
     
     public function crudfaqAction() {
+            $domande = $this->_faqModel->getAllFaq();
+            $this->view->assign(array('domande' => $domande));
             if (!$this->getRequest()->isPost()) {
             $this->_helper->redirector('faq');
             }
@@ -306,7 +313,72 @@ class AdminController extends Zend_Controller_Action {
     }
    
    
+    public function chatAction(){
     
+             $selected = $this->_getParam('selected',0);
+             $sended = $this->_getParam('sended',0);
+             
+             if($selected == 1 && $sended == 0 ){
+                 if (!$this->getRequest()->isPost()) {
+                        $this->_helper->redirector('chat');
+                     }
+                     $selectform = $this->_formUserSelect;
+                 if (!$selectform->isValid($_POST)) {
+                        $selectform->setDescription('Attenzione: Seleziona un utente.');
+                        return $this->render('chat');	
+            }
+                $usr = $selectform->getValues();
+                $chatlist = $this->_chatModel->getAllChatAdmin($usr);
+                $this->view->assign(array('chat'     => $chatlist,
+                                          'cliente'  => $usr['username'],
+                                          'selected' =>  1));
+             }
+
+                if($selected == 1 && $sended == 1  ){
+                    
+                 $chatform = $this->_formChat;   
+                 $selectform = $this->_formUserSelect;
+                 
+                if (!$chatform->isValid($_POST)) {
+                    $this->_helper->redirector('chat');
+                }
+                
+                $currentmsg = $chatform->getValues();
+                $this->_chatModel->sendMessage('admin',$currentmsg['currentusr'],$currentmsg);
+                $chatlist = $this->_chatModel->getAllChatAdmin($currentmsg['currentusr']);
+                
+                $this->_helper->redirector('chat');
+                }
+        $this->view->headTitle('Assistenza'); 
+        }
+    
+    
+    public function SelectUserForm(){
+        $urlHelper = $this->_helper->getHelper('url');
+        $this->_formUserSelect = new Application_Form_Admin_Chat_selectUser();
+        $this->_formUserSelect -> setAction($urlHelper->url(array(
+                            'controller' => 'admin',
+                            'action' => 'chat',
+                            'selected' => 1,
+                            ),
+                            'default'
+                            ));
+        return $this->_formUserSelect;
+    }
+    
+    private function sendChatForm(){
+            $urlHelper = $this->_helper->getHelper('url');
+            $this->_formChat = new Application_Form_User_Chat_Message();
+            $this->_formChat -> setAction($urlHelper->url(array(
+                            'controller' => 'admin',
+                            'action' => 'chat',
+                            'sended' => 1,
+                            'selected' => 1,
+                            ),
+                            'default'
+                            ));
+            return $this->_formChat;
+    }
     
     
     

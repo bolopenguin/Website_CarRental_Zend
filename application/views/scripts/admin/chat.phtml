@@ -1,0 +1,103 @@
+<h2 class="headerAdmin">
+    Area Riservata Amministratore
+</h2>
+
+<nav class="barraNavigazioneAdmin">
+    <a href="<?=
+    $this->url(array(
+        'controller' => 'staff',
+        'action' => 'staffarea',
+            ), 'default', true
+    );
+    ?>" title="Operazioni Staff">     
+        Funzionalità dello Staff
+    </a>
+    
+    <a href="<?=
+    $this->url(array(
+        'controller' => 'admin',
+        'action' => 'staff',
+            ), 'default', true
+    );
+    ?>" title="Crud Staff">     
+        Gestisci Staff
+    </a>
+
+    <a href="<?=
+    $this->url(array(
+        'controller' => 'admin',
+        'action' => 'user',
+            ), 'default', true
+    );
+    ?>" title="Elimina Users">     
+        Elimina Utenti
+    </a>
+
+    <a href="<?=
+    $this->url(array(
+        'controller' => 'admin',
+        'action' => 'statistiche',
+            ), 'default', true
+    );
+    ?>" title="Statistiche Annuali">     
+        Statistiche Annuali
+    </a>
+    
+    <a href="<?=
+    $this->url(array(
+        'controller' => 'admin',
+        'action' => 'faq',
+            ), 'default', true
+    );
+    ?>" title="Crud Faq">     
+        Gestione FAQ
+    </a>
+    
+    <a href="<?=
+    $this->url(array(
+        'controller' => 'admin',
+        'action' => 'chat',
+            ), 'default', true
+    );
+    ?>" title="Assistenza" style="border-right: 2px solid #333;">     
+        Vai alla chat
+    </a>
+
+</nav>
+
+<h3 class="headerAdmin"> 
+Area Messaggistica
+</h3>
+
+<div id="selectuserChat">
+    <fieldset style="width: 200px;">
+    <legend> <h3 class="headerAdmin"> Seleziona l'Utente con cui chattare </h3> </legend>
+    <?php echo $this->selectUserForm ?>
+</fieldset>
+</div>
+
+<?php if($this->selected == 1) :?>
+
+    <fieldset style="width: 500px; float: left;">
+    <legend> <h3 class="headerAdmin"> Scrivi qua il Messaggio </h3> </legend>
+    <?php
+     $cuser=array('currentusr' => $this->cliente);
+     echo $this->chatForm->populate($cuser) ?>
+    </fieldset>
+
+
+    <div id="chatlist">
+        <table>
+        <?php foreach ($this->chat as $chat) : ?>
+            <tr>
+            <?php if($chat->sender === $this->cliente): ?>
+                <?php echo'<td class="other">'.$chat->msg;  ?>
+            <?php else: ?>
+                <?php echo '<td class="me">'.$chat->msg; ?>
+            <?php endif; ?>
+            <?php echo '</td> </tr>'?>
+          <?php endforeach ?>
+            <br>        
+        </table>
+    </div>
+ <?php endif; ?>
