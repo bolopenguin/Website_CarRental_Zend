@@ -50,7 +50,7 @@ class Application_Form_Staff_Crud_Inserisci extends App_Form_Abstract {
         
         $this->addElement('file', 'foto', array(
             'label' => 'Foto',
-            'destination' => APPLICATION_PATH . '/../public/images/auto',
+            'destination' => '/home/grp_08/www/ZendProject/public/images/auto',
             'required' => true,
             'validators' => array( 
             array('Count', false, 1),
