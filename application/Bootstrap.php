@@ -1,12 +1,21 @@
 <?php
 
 class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
-//(Preso da ZP1)
 {
 	protected $_view;
 
 
-
+    protected function _initDatabase(){
+        include_once ( APPLICATION_PATH.'/../../include/connect.php');
+        $db = new Zend_Db_Adapter_Pdo_Mysql(array(
+            'host' => $HOST ,
+            'username' => $USER,
+            'password' => $PASSWORD,
+            'dbname' => $DB,
+        ));
+        Zend_Db_Table_Abstract::setDefaultAdapter($db);
+    }
+    
     protected function _initRequest()
     {
         $this->bootstrap('FrontController');
@@ -16,8 +25,6 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     }
 
     protected function _initViewSettings()
-            
-            //definiamo i valori dei placeholder del layout
     {
         
         $this->bootstrap('view');

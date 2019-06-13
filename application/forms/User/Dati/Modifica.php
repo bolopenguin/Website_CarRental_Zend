@@ -12,16 +12,7 @@ class Application_Form_User_Dati_Modifica extends App_Form_Abstract
 		$this->setAttrib('enctype', 'multipart/form-data');
         
             $this->addElement('text', 'username', array(
-            'label' => 'Username',
-            'required' => true,
-            'readonly' => true,
-            'filters' => array('LocalizedToNormalized'),
-            'decorators' => $this->elementDecorators,
-        		));
-            
-                    
-            $this->addElement('text', 'role', array(
-            'label' => 'role',
+            'label' => username,
             'required' => true,
             'readonly' => true,
             'filters' => array('LocalizedToNormalized'),
@@ -58,10 +49,41 @@ class Application_Form_User_Dati_Modifica extends App_Form_Abstract
             'decorators' => $this->elementDecorators,
         		));
             
+            $this->addElement('select', 'occupazione', array(
+                'required' => true,
+                'decorators' => $this->elementDecorators,
+                'multiOptions' => array(
+                    'studente' => 'studente',
+                    'professore' => 'professore',
+                    'impiegato' => 'impiegato',
+                    'imprenditore' => 'imprenditore',
+                    'operaio' => 'operaio',
+                    'altro' => 'altro',
+                ),
+                'label' => "Occupazione",
+            ));
+               
+        
+            $this->addElement('hidden', 'data_nascita', array(
+            'required' => true,
+            'filters' => array('LocalizedToNormalized'),
+            'decorators' => $this->elementDecorators,
+        		));
+            
+            
+            $this->addElement('hidden', 'role', array(
+            'required' => true,
+            'readonly' => true,
+            'filters' => array('LocalizedToNormalized'),
+            'decorators' => $this->elementDecorators,
+        		));
+            
             $this->addElement('submit', 'add', array(
             'label' => 'Applica',
                 'decorators' => $this->buttonDecorators,
                 ));
+            
+            
        $this->setDecorators(array(
 			'FormElements',
 			array('HtmlTag', array('tag' => 'table', 'class' => 'filtertable')),
@@ -80,8 +102,10 @@ class Application_Form_User_Dati_Modifica extends App_Form_Abstract
         $this->cognome->setValue($utente['cognome']);
         $this->residenza->setValue($utente['residenza']);
         $this->password->setValue($utente['password']);
-
-
+        $this->data_nascita->setValue($utente['data_nascita']);
+        $this->occupazione->setValue($utente['occupazione']);
+        
         return $this;
     }
+   
 }

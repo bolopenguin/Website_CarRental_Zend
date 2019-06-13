@@ -74,7 +74,7 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract
     }
     
        
-    public function getUserFilteredAuto($values,$tmp,$paged=null){
+    public function getUserFilteredAuto($values,$tmp){
     
         $abs_max=$this->fetchRow($this->select('prezzo_giornaliero')
                                      -> order('prezzo_giornaliero DESC'));
@@ -99,18 +99,11 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract
                 ->where('numero_posti >= ?' , $posti)
                 ->order('prezzo_giornaliero');
         
-        if($paged !== null){
-            $adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
-			$paginator = new Zend_Paginator($adapter);
-			$paginator->setItemCountPerPage(3)
-		          	  ->setCurrentPageNumber((int) $paged);
-			return $paginator;
-        }
         
         return $this->fetchAll($select);
         }
         
-        public function getAvaiableAuto($tmp, $paged = null){
+        public function getAvaiableAuto($tmp){
         
         $targhe=array();
         foreach ($tmp as $prenotazione) {
@@ -121,13 +114,8 @@ class Application_Resource_Auto extends Zend_Db_Table_Abstract
                                 ->where('targa NOT IN '.$stringa)
                                 ->order('prezzo_giornaliero') ;
         
-        if($paged !== null){
-            $adapter = new Zend_Paginator_Adapter_DbTableSelect($select);
-			$paginator = new Zend_Paginator($adapter);
-			$paginator->setItemCountPerPage(3)
-		          	  ->setCurrentPageNumber((int) $paged);
-			return $paginator;
-        }
+        
+        
         return $this->fetchAll($select);
         
         }

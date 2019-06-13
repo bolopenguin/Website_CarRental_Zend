@@ -64,11 +64,19 @@ class Application_Form_Public_Auth_Register extends App_Form_Abstract {
                                         
         $this->addElement('text', 'data_nascita', array(
             'required' => true,
-            'label' => 'Data di Nascita',  
+            'label' => 'Data di Nascita',
+            'validators' => array(array('Date', true, array('format' => 'Y-m-d'))),
+            'filters' => array('LocalizedToNormalized'),
             'placeholder' => 'aaaa-mm-gg',
             'decorators' => $this->elementDecorators,
         ));
-
+        
+        $this->addElement('hidden', 'role', array(
+            'required' => false,
+            'value' => 'user',
+            'decorators' => $this->elementDecorators,
+        ));
+        
         $this->addElement('submit', 'register', array(
             'label' => 'Registrati',
             'decorators' => $this->buttonDecorators,

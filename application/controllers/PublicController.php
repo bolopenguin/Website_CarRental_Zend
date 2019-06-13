@@ -25,7 +25,7 @@ class PublicController extends Zend_Controller_Action {
     }
     
     public function indexAction(){
-       
+           $this->view->headTitle('Homepage');
     }
     
     private function getAutoForm()
@@ -65,7 +65,7 @@ class PublicController extends Zend_Controller_Action {
         }
         
         $values = $form->getValues();
-        $vetture = $this->_catalogModel->getFilteredAuto($values,$paged);
+        $vetture = $this->_catalogModel->getFilteredAuto($values);
     }
     
     $this->view->assign(array('auto' => $vetture));
@@ -135,6 +135,7 @@ class PublicController extends Zend_Controller_Action {
 
     public function registerAction() {
         $request = $this->getRequest();
+        $this->view->headTitle('Register');
         if (!$request->isPost()) {
             return $this->_helper->redirector('login');
         }
@@ -144,6 +145,10 @@ class PublicController extends Zend_Controller_Action {
             return $this->render('login');
         }
         $values = $form->getValues();
+        if(strtotime($values['data_nascita']) >= strtotime('now')){
+            $form->setDescription('Attenzione: alcuni dati inseriti sono errati.');
+            return $this->render('login');
+        }
         $esito = $this->_userModel->addUtente($values);
         
         if($esito){

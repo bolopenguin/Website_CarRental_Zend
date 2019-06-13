@@ -349,7 +349,7 @@ class AdminController extends Zend_Controller_Action {
                 
                 $this->_helper->redirector('chat');
                 }
-        $this->view->headTitle('Assistenza'); 
+        $this->view->headTitle('Area Riservata'); 
         }
     
     

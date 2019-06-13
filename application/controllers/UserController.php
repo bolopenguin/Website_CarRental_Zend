@@ -112,10 +112,15 @@ class UserController extends Zend_Controller_Action {
             $form1->setDescription('Attenzione: alcuni dati inseriti sono errati.');
                 return $this->render('leauto');
         }
-        
         $values = $form1->getValues();
+        if(strtotime($values['inizio']) >= strtotime($values['fine']) || strtotime($values['inizio']) < strtotime('now')
+            || strtotime($values['fine']) <= strtotime('now')
+                ){
+            $form1->setDescription('Attenzione: alcuni dati inseriti sono errati.');
+                return $this->render('leauto');
+        }
         $tmp = $this->_catalogModel->getNotAvaiableAuto($values);
-        $vetture = $this->_catalogModel->getUserFilteredAuto($values,$tmp,$paged);
+        $vetture = $this->_catalogModel->getUserFilteredAuto($values,$tmp);
         $this->view->assign(array('auto' => $vetture,
                                   'datainizio' => $values['inizio'],
                                   'datafine'   => $values['fine'],

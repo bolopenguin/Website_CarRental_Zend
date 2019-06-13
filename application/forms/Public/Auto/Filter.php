@@ -28,6 +28,7 @@ class Application_Form_Public_Auto_Filter extends App_Filter_Abstract {
             'label' => 'Numero posti',
             'required' => false,
             'decorators' => $this->elementDecorators,
+            'validators' => array(array('Int', true , array('locale' => 'en_US')))
         ));
 
         $this->addElement('submit', 'search', array(
