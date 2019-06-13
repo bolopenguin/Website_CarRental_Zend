@@ -227,6 +227,11 @@ width: 132px;
 /*    margin-top: 10px;*/
 }
 
+
+filterAuto label{
+    color: white;
+}
+
 label.optional{
     color: white;
 }
@@ -260,6 +265,15 @@ label.optional{
 }
 
 /* AREA USER */
+
+#iconaChat{
+    float: right;
+    width: 80px;
+    height: 80px;
+    margin-top: -110px;
+    margin-right: 50px;
+}
+
 
 .mainGestioneUtente{
     display: flex;
@@ -339,29 +353,6 @@ label.optional{
     background-color: #333;
 }
 
-#username-label{
-    color:black;
-}
-
-#role-label{
-    color:black;
-}
-
-#nome-label{
-    color:black;
-}
-
-#cognome-label{
-    color:black;
-}
-
-#residenza-label{
-    color:black;
-}
-
-#password-label{
-    color:black;
-}
 
 
 /*  AREA ADMIN */
@@ -421,6 +412,7 @@ label.optional{
 
 .element textArea{
     width: 400px;
+    height: 200px;
     resize: none;
 }
 
